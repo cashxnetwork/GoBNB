@@ -1,69 +1,56 @@
-import {
-    Box,
-    Button,
-    Flex,
-    Heading,
-    HStack,
-    Icon,
-    Stack,
-    Tag,
-    VStack
-} from "@chakra-ui/react";
-import Lottie from "lottie-react";
-import LottieBNBLogo from "../../assets/lottie/bnb.json";
-import LottieBNB2Logo from "../../assets/lottie/bnb2.json";
-import LottieBox from "../../assets/lottie/box.json";
-import { LucideMoveRight } from "lucide-react";
-
-const headingMain = "Earn crypto with the power of BSC Ecosystem";
+'use client';
+import { Box, Flex, VStack } from '@chakra-ui/react';
+import React, { useState } from 'react';
+import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
+import HeaderImage from '../../components/HeaderImage';
+import Particles from '../../components/Particles';
+import { HeaderHeadingComponent } from './HeaderHeadingComponent/HeaderHeadingComponent';
 
 export const Header = () => {
-    return (
-        <VStack w="full" spacing={0}>
-            <Stack
-                w="full"
-                maxW="8xl"
-                direction={["column", "column", "row"]}
-                p={5}
-                alignItems={"center"}
-                justifyContent={"space-between"}
-                py={20}
-            >
-                <Flex direction={"column"} gap={5}>
-                    <Tag
-                        maxW={"fit-content"}
-                        colorScheme="orange"
-                        pr={5}
-                        borderRadius={"full"}
-                    >
-                        <HStack spacing={0}>
-                            <Box boxSize={16}>
-                                <Lottie animationData={LottieBNB2Logo}></Lottie>
-                            </Box>
-                            <Heading size={["sm", "md"]}>Built on BSC, for BSC</Heading>
-                        </HStack>
-                    </Tag>
-                    <Heading fontSize={["4xl", "5xl", "6xl", "7xl"]} fontWeight={900}>
-                        {headingMain}
-                    </Heading>
-                    <Button w={[300]} h={20} borderRadius={"3xl"}>
-                        <HStack gap={10}>
-                            <Lottie
-                                animationData={LottieBox}
-                                style={{ width: "30px", color: "white", stroke: "white" }}
-                            ></Lottie>
-                            <Heading size="sm">Explore DApp</Heading>
-                            <Icon as={LucideMoveRight} strokeWidth={5}></Icon>
-                        </HStack>
-                    </Button>
-                </Flex>
-                <Lottie
-                    animationData={LottieBNBLogo}
-                    style={{
-                        width: "100%"
-                    }}
-                ></Lottie>
-            </Stack>
-        </VStack>
-    );
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const handleMouseMove = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    const { clientX, clientY } = event;
+    const { innerWidth, innerHeight } = window;
+    const x = (clientX / innerWidth) * 2 - 1;
+    const y = -(clientY / innerHeight) * 2 + 1;
+    setMousePosition({ x, y });
+  };
+  return (
+    <VStack
+      w="full"
+      zIndex={1}
+      onMouseMove={handleMouseMove}
+      overflow="hidden"
+      direction="column"
+    // bgGradient={useColorModeValue(
+    //   'linear(to-b, white, gray.100, transparent)',
+    //   'linear(to-t, transparent, gray.900, transparent)'
+    // )}
+    >
+      <VStack w="full" spacing={70}>
+        <Particles quantity={200}></Particles>
+        <ParallaxProvider>
+          <Parallax speed={-30}>
+            <VStack w="full" px={[2, 5, 10]} minH="40vh">
+              <HeaderHeadingComponent />
+            </VStack>
+          </Parallax>
+        </ParallaxProvider>
+        <Flex flex={1}></Flex>
+        {/* <Image
+          src="/header2.svg"
+          alt="Header image"
+          width="100%"
+          minW={800}
+          maxW={1200}
+          zIndex={1}
+        ></Image> */}
+        <Box width="100%" minW={600} maxW={1200} zIndex={1}>
+          <HeaderImage></HeaderImage>
+        </Box>
+      </VStack>
+    </VStack>
+  );
 };

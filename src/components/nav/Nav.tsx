@@ -11,7 +11,7 @@ export const Nav = () => {
             py={5}
             px={2}
             h={70}
-            bgColor={"#f1bb1e"}
+            bgColor={"yellow.500"}
             borderRadius={"2xl"}
             color="black"
             spacing={1}
