@@ -14,6 +14,7 @@ import {
 } from "../../hooks/ReferralHooks";
 import { CheckReferrerActive } from "./CheckReferrerActive";
 import UpgradeUI from "../../components/UpgradeUi/UpgradeUi";
+import { formatEther } from "viem";
 
 export default function RegistrationPage() {
   const { chainId } = useAppKitNetwork();
@@ -49,10 +50,12 @@ export default function RegistrationPage() {
           <>
             <RegistrationUI
               referrerAddress={referrerAddress}
-              valueInDecimals={Number(valueToRegister ?? 0) / 10 ** 18}
+              valueInDecimals={
+                Number(formatEther(valueToRegister ?? 0))
+              }
               currentNetwork={currentNetwork}
             ></RegistrationUI>
-            <Heading>New User</Heading>
+            {/* <Heading>New User</Heading> */}
           </>
         ) : (
           <>
@@ -71,7 +74,7 @@ export default function RegistrationPage() {
               }
               currentNetwork={currentNetwork}
             ></UpgradeUI>
-            <Heading>Old User</Heading>
+            {/* <Heading>Old User</Heading> */}
           </>
         )}
         ;

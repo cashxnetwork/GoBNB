@@ -1042,13 +1042,6 @@ export const RegistrationUpgradeableABI = [
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "setDefaults",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "internalType": "address",

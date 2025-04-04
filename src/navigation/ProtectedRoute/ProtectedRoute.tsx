@@ -1,11 +1,11 @@
 'use client';
 import { VStack } from '@chakra-ui/react';
+import { useAppKitAccount } from '@reown/appkit/react';
 import { ReactNode } from 'react';
-import { useAccount } from 'wagmi';
 import NoWalletComponent from './NoWalletComponent';
 
 function ProtectedRoute({ children }: { children: ReactNode }) {
-  const { address } = useAccount();
+  const { address } = useAppKitAccount();
 
   return (
     <VStack w="full" minH="100vh" justify="center">

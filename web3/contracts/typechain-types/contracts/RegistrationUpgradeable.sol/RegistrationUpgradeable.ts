@@ -12,7 +12,7 @@ import type {
   AddressLike,
   ContractRunner,
   ContractMethod,
-  Listener
+  Listener,
 } from "ethers";
 import type {
   TypedContractEvent,
@@ -20,7 +20,7 @@ import type {
   TypedEventLog,
   TypedLogDescription,
   TypedListener,
-  TypedContractMethod
+  TypedContractMethod,
 } from "../../common";
 
 export type UpgradeStructStruct = {
@@ -129,7 +129,6 @@ export interface RegistrationUpgradeableInterface extends Interface {
       | "registrationNative"
       | "renounceOwnership"
       | "setChainLinkOracleAddress"
-      | "setDefaults"
       | "transferOwnership"
       | "updateUpgradePlans"
       | "upgradeAccountNative"
@@ -251,10 +250,6 @@ export interface RegistrationUpgradeableInterface extends Interface {
     values: [AddressLike, boolean]
   ): string;
   encodeFunctionData(
-    functionFragment: "setDefaults",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
     functionFragment: "transferOwnership",
     values: [AddressLike]
   ): string;
@@ -359,10 +354,6 @@ export interface RegistrationUpgradeableInterface extends Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "setChainLinkOracleAddress",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "setDefaults",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -859,8 +850,6 @@ export interface RegistrationUpgradeable extends BaseContract {
     "nonpayable"
   >;
 
-  setDefaults: TypedContractMethod<[], [void], "nonpayable">;
-
   transferOwnership: TypedContractMethod<
     [newOwner: AddressLike],
     [void],
@@ -909,7 +898,9 @@ export interface RegistrationUpgradeable extends BaseContract {
   getFunction(
     nameOrSignature: "getAllUsers"
   ): TypedContractMethod<[], [string[]], "view">;
-  getFunction(nameOrSignature: "getContractDefaults"): TypedContractMethod<
+  getFunction(
+    nameOrSignature: "getContractDefaults"
+  ): TypedContractMethod<
     [],
     [
       [string, bigint, string, bigint, string, bigint] & {
@@ -933,7 +924,9 @@ export interface RegistrationUpgradeable extends BaseContract {
   getFunction(
     nameOrSignature: "getRandomUserList"
   ): TypedContractMethod<[], [string[]], "view">;
-  getFunction(nameOrSignature: "getRegistrationsStats"): TypedContractMethod<
+  getFunction(
+    nameOrSignature: "getRegistrationsStats"
+  ): TypedContractMethod<
     [],
     [
       [bigint, bigint, bigint, bigint] & {
@@ -948,7 +941,9 @@ export interface RegistrationUpgradeable extends BaseContract {
   getFunction(
     nameOrSignature: "getSupportedChainLinkOracleAddress"
   ): TypedContractMethod<[], [string[]], "view">;
-  getFunction(nameOrSignature: "getUpgradePlans"): TypedContractMethod<
+  getFunction(
+    nameOrSignature: "getUpgradePlans"
+  ): TypedContractMethod<
     [],
     [
       [UpgradeStructStructOutput[], bigint] & {
@@ -972,7 +967,9 @@ export interface RegistrationUpgradeable extends BaseContract {
     [AccountStructStructOutput],
     "view"
   >;
-  getFunction(nameOrSignature: "getUserBusiness"): TypedContractMethod<
+  getFunction(
+    nameOrSignature: "getUserBusiness"
+  ): TypedContractMethod<
     [_userAddress: AddressLike],
     [
       [bigint, bigint, bigint, bigint] & {
@@ -991,7 +988,9 @@ export interface RegistrationUpgradeable extends BaseContract {
     [[bigint, bigint] & { level: bigint; totalUpgradeValueInUSD: bigint }],
     "view"
   >;
-  getFunction(nameOrSignature: "getUserRewards"): TypedContractMethod<
+  getFunction(
+    nameOrSignature: "getUserRewards"
+  ): TypedContractMethod<
     [_userAddress: AddressLike],
     [
       [bigint, bigint, bigint, bigint] & {
@@ -1003,7 +1002,9 @@ export interface RegistrationUpgradeable extends BaseContract {
     ],
     "view"
   >;
-  getFunction(nameOrSignature: "getUserTeam"): TypedContractMethod<
+  getFunction(
+    nameOrSignature: "getUserTeam"
+  ): TypedContractMethod<
     [_userAddress: AddressLike],
     [
       [
@@ -1072,9 +1073,6 @@ export interface RegistrationUpgradeable extends BaseContract {
     [void],
     "nonpayable"
   >;
-  getFunction(
-    nameOrSignature: "setDefaults"
-  ): TypedContractMethod<[], [void], "nonpayable">;
   getFunction(
     nameOrSignature: "transferOwnership"
   ): TypedContractMethod<[newOwner: AddressLike], [void], "nonpayable">;

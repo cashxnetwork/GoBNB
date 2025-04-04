@@ -1,39 +1,55 @@
-import { createAppKit } from '@reown/appkit/react'
+import { createAppKit } from "@reown/appkit/react";
 
-import { WagmiAdapter } from '@reown/appkit-adapter-wagmi'
-import { AppKitNetwork, bsc } from '@reown/appkit/networks'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { WagmiProvider } from 'wagmi'
-import { CloudAuthSIWX } from '@reown/appkit-siwx'
-import { projectName } from '../constants/projectConfig'
+import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
+import { AppKitNetwork, bsc } from "@reown/appkit/networks";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { http, WagmiProvider } from "wagmi";
+import { CloudAuthSIWX } from "@reown/appkit-siwx";
+import { projectName } from "../constants/projectConfig";
 
 // 0. Setup queryClient
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
 // 1. Get projectId from https://cloud.reown.com
-const projectId = import.meta.env.VITE_REOWN_PROJECT_ID
+const projectId = import.meta.env.VITE_REOWN_PROJECT_ID;
 if (!projectId) {
-    throw new Error('Please set your REOWN_PROJECT_ID in .env')
+    throw new Error("Please set your REOWN_PROJECT_ID in .env");
 }
 // 1.5. Get projectId from https://cloud.reown.com
 
 // 2. Create a metadata object - optional
 const metadata = {
     name: projectName,
-    description: 'A fully #decentralised protocol that distributes rewards for joining the GoBNB network',
-    url: 'https://example.com', // origin must match your domain & subdomain
-    icons: ['https://avatars.githubusercontent.com/u/179229932']
-}
+    description:
+        "A fully #decentralised protocol that distributes rewards for joining the GoBNB network",
+    url: "https://example.com", // origin must match your domain & subdomain
+    icons: ["https://avatars.githubusercontent.com/u/179229932"]
+};
 
 // 3. Set the networks
-const networks: [AppKitNetwork, ...AppKitNetwork[]] = [bsc]
-
+const networks: [AppKitNetwork, ...AppKitNetwork[]] = [bsc];
+const selectedBSCRPC =
+    "https://virtual.binance.rpc.tenderly.co/63fe494d-8f02-4c20-8c89-8ebe76ce720f";
+if (!selectedBSCRPC) {
+    throw new Error("Please set your BSC_RPC in .env");
+}
 // 4. Create Wagmi Adapter
 const wagmiAdapter = new WagmiAdapter({
     networks,
+    transports: {
+        [bsc.id]: http(selectedBSCRPC, {
+            batch: {
+                batchSize: 1000,
+                wait: 100
+            },
+            retryCount: 5,
+            retryDelay: 1000,
+            timeout: 30000 // 30 seconds
+        })
+    },
     projectId,
     ssr: true
-})
+});
 
 // 5. Create modal
 createAppKit({
@@ -44,16 +60,15 @@ createAppKit({
     features: {
         analytics: true, // Optional - defaults to your Cloud configuration
         allWallets: true,
-        socials: ["apple", "google", "x", "facebook", "discord", "github"],
+        socials: ["apple", "google", "x", "facebook", "discord", "github"]
     },
     siwx: new CloudAuthSIWX()
-
-})
+});
 
 export function ProviderReown({ children }: { children: React.ReactNode }) {
     return (
         <WagmiProvider config={wagmiAdapter.wagmiConfig}>
             <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
         </WagmiProvider>
-    )
+    );
 }

@@ -149,7 +149,7 @@ task("export-abi", "Exports ABIs of compiled contracts")
       );
     }
 
-    console.log(`✅ ABIs exported to: ${outDir}`);
+    console.log(`✅ ABIs exported to: ${directoryToSaveDeployementDetails}`);
   });
 
 // Hook into the compile process

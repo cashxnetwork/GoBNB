@@ -136,27 +136,28 @@ contract RegistrationUpgradeable is
     receive() external payable {}
 
     function initialize() public initializer {
-        _defaultReferrer = 0xeb1100091Ce830ba58A04834c35D29B75b53eb74; //Need to change
+        _defaultReferrer = 0xCEf5767039FA6a66016b802546F123E0c3Ddedc2; //Need to change
         _registrationValueInUSD = 25 * 10 ** 18;
 
         _levelRatesFixed = 60;
         _levelsToCount = 8;
         _refereeLimit = 2;
 
-        _teamWallet = 0x76b7c991C3Ef93B6771fAC97a984a2Cb37962fbc; // need to change
+        _teamWallet = 0x554F58fcfCEf95F82c8CF6eD9E51E5c79E341481; // need to change
         _teamWalletRate = 20;
 
         _liquidityCreateRate = 16;
         _weeklyRewardRate = 4;
         _weeklyRewardTimestamp = block.timestamp;
 
-        _liquidityWallet = 0xefA6077f510B10a6C1B2f8dA24a89Fc561aC9445; // yet to decide
+        _liquidityWallet = 0x3d7263AFa42C9d47c13cfCdcDc72A131077E5618; // yet to decide
+        setDefaults();
 
         __Ownable_init(msg.sender);
         __UUPSUpgradeable_init();
     }
 
-    function setDefaults() external onlyOwner {
+    function setDefaults() private {
         AccountStruct storage defaultReferrerAccount = _mappingAccounts[
             _defaultReferrer
         ];

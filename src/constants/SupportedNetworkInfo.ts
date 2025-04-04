@@ -1,6 +1,10 @@
 import { Abi } from "viem";
 import { Chain, bsc } from "wagmi/chains";
-import { PriceOracleObject, ReferralV1ContractObject } from "./ContractAddress";
+import {
+  RegistrationUpgradeableABI,
+  RegistrationUpgradeableDeploymentDetails
+} from "../web3/contracts/contractDeploymentDetails/RegistrationUpgradeable";
+import { PriceOracleObject } from "./ContractAddress";
 
 export const projectName = "MarsNext";
 export const tagLine =
@@ -39,8 +43,9 @@ export interface SupportedNetworkInfo {
 
 export const supportedNetworkInfo: SupportedNetworkInfo = {
   [bsc.id]: {
-    referralContractAddress: ReferralV1ContractObject.bscAddress,
-    referralContractInterface: ReferralV1ContractObject.abi,
+    referralContractAddress: RegistrationUpgradeableDeploymentDetails[bsc.id]
+      ?.proxyAddress as `0x${string}`,
+    referralContractInterface: RegistrationUpgradeableABI,
     priceOracleAddress: PriceOracleObject.bscAddress,
     priceOracleInterface: PriceOracleObject.abi,
     native: bsc,

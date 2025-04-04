@@ -55,6 +55,7 @@ export const useGetUserLevelToUpgrade = (
   const value = useGetReadContract("getUserCurrentUpgradeLevel", [
     userAddress ?? zeroAddress
   ]);
+
   return {
     ...value,
     data: value.data as unknown as Awaited<
@@ -67,6 +68,7 @@ export const useNeedNativeToRegister = (priceOracleAddress: `0x${string}`) => {
   const value = useGetReadContract("needNativeToRegister", [
     priceOracleAddress
   ]);
+
   return {
     ...value,
     data: value.data as unknown as Awaited<
