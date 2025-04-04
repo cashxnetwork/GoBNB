@@ -170,6 +170,23 @@ contract RegistrationUpgradeable is
         _liquidityWallet = 0x3d7263AFa42C9d47c13cfCdcDc72A131077E5618; // yet to decide
         // setDefaults();
 
+        uint256[7] memory _valueToUpgradeInDecimals = [
+            uint256(20e18),
+            uint256(30e18),
+            uint256(50e18),
+            uint256(180e18),
+            uint256(400e18),
+            uint256(740e18),
+            uint256(1470e18)
+        ];
+
+        for (uint8 i; i < _valueToUpgradeInDecimals.length; ++i) {
+            _mappingUpgrade[i] = UpgradeStruct(
+                i + 1,
+                _valueToUpgradeInDecimals[i]
+            );
+        }
+
         __Ownable_init(msg.sender);
         __UUPSUpgradeable_init();
     }

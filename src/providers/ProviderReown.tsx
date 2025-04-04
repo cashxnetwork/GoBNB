@@ -22,8 +22,8 @@ const metadata = {
     name: projectName,
     description:
         "A fully #decentralised protocol that distributes rewards for joining the GoBNB network",
-    url: "https://example.com", // origin must match your domain & subdomain
-    icons: ["https://avatars.githubusercontent.com/u/179229932"]
+    url: "https://gobnb.network", // origin must match your domain & subdomain
+    icons: ["https://gobnb.network/projectLogo.png"]
 };
 
 // 3. Set the networks

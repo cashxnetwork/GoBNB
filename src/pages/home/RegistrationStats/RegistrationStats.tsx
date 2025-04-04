@@ -13,25 +13,25 @@ export const RegistrationStats = () => {
     {
       name: "Total Users",
       icon: AiOutlineFire,
-      value: registrationStats?.[0],
+      value: registrationStats?.[0] ?? 0n,
       children: "Users"
     },
     {
       name: "Total Registration Value",
       icon: AiOutlineFire,
-      value: registrationStats?.[1],
+      value: Number(Number(formatEther(registrationStats?.[1] ?? 0n))).toFixed(2),
       children: "USD"
     },
     {
       name: "Referral Reward Distributed",
       icon: HiUserGroup,
-      value: registrationStats?.[2],
+      value: Number(Number(formatEther(registrationStats?.[2] ?? 0n))).toFixed(2),
       children: "USD"
     },
     {
       name: "Weekly Reward Distributed",
       icon: CiTimer,
-      value: registrationStats?.[3],
+      value: Number(Number(formatEther(registrationStats?.[3] ?? 0n))).toFixed(2),
       children: "USD"
     }
   ];
@@ -43,7 +43,7 @@ export const RegistrationStats = () => {
             <VStack key={key}>
               <Icon as={valuesObject?.icon} boxSize={20}></Icon>
               <Heading>
-                {Number(Number(formatEther(valuesObject?.value)))}{" "}
+                {valuesObject?.value}{" "}
                 {valuesObject?.children}
               </Heading>
               <Heading size="sm" w={150} textAlign="center">

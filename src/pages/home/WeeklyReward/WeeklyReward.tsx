@@ -1,15 +1,14 @@
 "use client";
 import { HStack, Heading, VStack } from "@chakra-ui/react";
-import { useNetwork } from "wagmi";
+import { formatEther } from "viem";
 import { Counter } from "../../../components/Counter";
+import { PageWrapper } from "../../../components/PageWrapper";
+import { HeadingComponent } from "../../../components/Ui";
 import { supportedNetworkInfo } from "../../../constants/SupportedNetworkInfo";
 import {
   useGetWeeklyRewardToBeDistributed,
   useNativePrice
 } from "../../../hooks/ReferralHooks";
-import { PageWrapper } from "../../../components/PageWrapper";
-import { HeadingComponent } from "../../../components/Ui";
-import { formatEther } from "viem";
 
 function WeeklyReward() {
   const weeklyRewardsToBeDistributed =

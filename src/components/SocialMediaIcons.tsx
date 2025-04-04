@@ -10,30 +10,30 @@ import { ReactElement } from 'react';
 import {
   FaBlog,
   FaGithub,
-  FaTelegram,
-  FaTwitter
+  FaTelegram
 } from 'react-icons/fa';
+import { FaSquareXTwitter } from "react-icons/fa6";
 
 const iconsObject = [
   {
-    label: 'Twitter',
-    icon: FaTwitter,
-    href: 'https://twitter.com/CashXnetwork',
+    label: 'X',
+    icon: FaSquareXTwitter,
+    href: 'https://x.com/goBNBgo',
   },
   {
     label: 'Telegram',
     icon: FaTelegram,
-    href: 'https://t.me/CashXnetwork',
+    href: 'https://t.me/goBNBgo',
   },
   {
     label: 'Blog',
     icon: FaBlog,
-    href: 'https://blog.cashx.network',
+    href: 'https://blog.gobnb.network',
   },
   {
     label: 'Github',
     icon: FaGithub,
-    href: 'https://docs.cashx.network',
+    href: 'https://docs.gobnb.network',
   },
 ];
 

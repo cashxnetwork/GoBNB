@@ -1,6 +1,13 @@
-import { Img } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Image } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 export const Logo = () => {
-    return <Img src={"/projectLogo.png"} as={Link} to="/"></Img>;
+    const navigateTo = useNavigate();
+    return (
+        <Image
+            src={"/projectLogo.png"}
+            onClick={() => navigateTo("/")}
+            cursor={"pointer"}
+        ></Image>
+    );
 };
