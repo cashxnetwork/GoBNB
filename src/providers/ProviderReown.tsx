@@ -4,6 +4,8 @@ import { WagmiAdapter } from '@reown/appkit-adapter-wagmi'
 import { AppKitNetwork, bsc } from '@reown/appkit/networks'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { WagmiProvider } from 'wagmi'
+import { CloudAuthSIWX } from '@reown/appkit-siwx'
+import { projectName } from '../constants/projectConfig'
 
 // 0. Setup queryClient
 const queryClient = new QueryClient()
@@ -17,8 +19,8 @@ if (!projectId) {
 
 // 2. Create a metadata object - optional
 const metadata = {
-    name: 'AppKit',
-    description: 'AppKit Example',
+    name: projectName,
+    description: 'A fully #decentralised protocol that distributes rewards for joining the GoBNB network',
     url: 'https://example.com', // origin must match your domain & subdomain
     icons: ['https://avatars.githubusercontent.com/u/179229932']
 }
@@ -43,7 +45,9 @@ createAppKit({
         analytics: true, // Optional - defaults to your Cloud configuration
         allWallets: true,
         socials: ["apple", "google", "x", "facebook", "discord", "github"],
-    }
+    },
+    siwx: new CloudAuthSIWX()
+
 })
 
 export function ProviderReown({ children }: { children: React.ReactNode }) {

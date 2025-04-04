@@ -1,8 +1,8 @@
 import { Flex, HStack, Spacer } from "@chakra-ui/react";
-import { Menu as MenuIcon } from "lucide-react";
 import { ColorModeSwitcher } from "../ColorModeSwitcher";
 import { Logo } from "../Logo";
 import { WalletConnectButton } from "../WalletConnectButton";
+import MenuButtonComponent from "./MenuButtonComponent";
 
 export const Nav = () => {
     return (
@@ -26,7 +26,7 @@ export const Nav = () => {
             <Spacer></Spacer>
             <ColorModeSwitcher />
             <WalletConnectButton />
-            <MenuIcon strokeWidth={5} size={"25px"} cursor={"pointer"} />
+            <MenuButtonComponent />
         </HStack>
     );
 };
