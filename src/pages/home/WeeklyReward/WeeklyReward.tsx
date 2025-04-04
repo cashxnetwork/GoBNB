@@ -1,19 +1,28 @@
-'use client';
-import { HStack, Heading, VStack } from '@chakra-ui/react';
-import { useNetwork } from 'wagmi';
-import { Counter } from '../../../components/Counter';
-import { supportedNetworkInfo } from '../../../constants/SupportedNetworkInfo';
+"use client";
+import { HStack, Heading, VStack } from "@chakra-ui/react";
+import { useNetwork } from "wagmi";
+import { Counter } from "../../../components/Counter";
+import { supportedNetworkInfo } from "../../../constants/SupportedNetworkInfo";
 import {
   useGetWeeklyRewardToBeDistributed,
   useNativePrice
-} from '../../../hooks/ReferralHooks';
-import { PageWrapper } from '../../../components/PageWrapper';
-import { HeadingComponent } from '../../../components/Ui';
+} from "../../../hooks/ReferralHooks";
+import { PageWrapper } from "../../../components/PageWrapper";
+import { HeadingComponent } from "../../../components/Ui";
+import { formatEther } from "viem";
 
 function WeeklyReward() {
-  const weeklyRewardsToBeDistributed = useGetWeeklyRewardToBeDistributed();
-  const useCurrentNetwork = supportedNetworkInfo[56];
-  const nativePrice = useNativePrice(useCurrentNetwork?.priceOracleAddress!);
+  const weeklyRewardsToBeDistributed =
+    useGetWeeklyRewardToBeDistributed()?.data;
+  const currentNetwork = supportedNetworkInfo[56];
+  const nativePrice = useNativePrice(
+    currentNetwork?.priceOracleAddress as `0x${string}`
+  )?.data;
+  const weeklyRewardsToBeDistributedValue =
+    Number(
+      Number(formatEther(weeklyRewardsToBeDistributed?.[0] ?? 0)) *
+      Number(formatEther(nativePrice ?? 0))
+    )?.toFixed(2) ?? 0;
 
   return (
     <PageWrapper>
@@ -23,11 +32,7 @@ function WeeklyReward() {
       ></HeadingComponent>
       <VStack>
         <HStack>
-          <Heading>
-            {Number(
-              (Number(weeklyRewardsToBeDistributed?.[0]) / 10 ** 18) * (Number(nativePrice ?? 0) / 10 ** 18)
-            )?.toFixed(2)}
-          </Heading>
+          <Heading>{weeklyRewardsToBeDistributedValue}</Heading>
           <Heading color="orange.500">USDT</Heading>
         </HStack>
       </VStack>

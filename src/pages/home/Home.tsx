@@ -8,16 +8,16 @@ import { PlanDiscriptionComponent } from './PlanDiscriptionComponent/PlanDiscrip
 import { PowerOfBlockchainComponent } from './PowerOfBlockchainComponent/PowerOfBlockchainComponent';
 import { RegistrationStats } from './RegistrationStats/RegistrationStats';
 import { Roadmap } from './Roadmap/Roadmap';
+import { SupportedChainComponent } from './SupportedChainComponent';
 import { Tokenomics } from './Tokenomics/Tokenomics';
 import WeeklyReward from './WeeklyReward/WeeklyReward';
-import { SupportedChainComponent } from './SupportedChainComponent';
 
 export const Home = () => {
   return (
     <VStack w="full" minH={'100vh'} pt={20} overflow="hidden">
       <Header />
-      {/* <RegistrationStats /> */}
-      {/* <WeeklyReward /> */}
+      <RegistrationStats />
+      <WeeklyReward />
       <SupportedChainComponent />
       <PlanDiscriptionComponent />
       <AboutUs />
