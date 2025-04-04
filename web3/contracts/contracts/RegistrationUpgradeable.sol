@@ -137,6 +137,23 @@ contract RegistrationUpgradeable is
 
     function initialize() public initializer {
         _defaultReferrer = 0xCEf5767039FA6a66016b802546F123E0c3Ddedc2; //Need to change
+        AccountStruct storage defaultReferrerAccount = _mappingAccounts[
+            _defaultReferrer
+        ];
+
+        defaultReferrerAccount.self = _defaultReferrer;
+        defaultReferrerAccount.parent = _defaultReferrer;
+        defaultReferrerAccount.selfBusinessInUSD = 100000 * 10 ** 18;
+
+        _randomUserList.push(_defaultReferrer);
+        _supportedChainLinkOracleAddress.push(
+            0x0567F2323251f0Aab15c8dFb1967E4e8A7D42aeE
+        );
+        _supportedChainLinkOracleAddress.push(
+            0x9c85f470f9ba23dFC4fE9531933C2ce2c1739c39
+        );
+        _mappingOracle[0x0567F2323251f0Aab15c8dFb1967E4e8A7D42aeE] = true;
+        _mappingOracle[0x9c85f470f9ba23dFC4fE9531933C2ce2c1739c39] = true;
         _registrationValueInUSD = 25 * 10 ** 18;
 
         _levelRatesFixed = 60;
@@ -151,30 +168,30 @@ contract RegistrationUpgradeable is
         _weeklyRewardTimestamp = block.timestamp;
 
         _liquidityWallet = 0x3d7263AFa42C9d47c13cfCdcDc72A131077E5618; // yet to decide
-        setDefaults();
+        // setDefaults();
 
         __Ownable_init(msg.sender);
         __UUPSUpgradeable_init();
     }
 
-    function setDefaults() private {
-        AccountStruct storage defaultReferrerAccount = _mappingAccounts[
-            _defaultReferrer
-        ];
-        defaultReferrerAccount.self = _defaultReferrer;
-        defaultReferrerAccount.parent = _defaultReferrer;
-        defaultReferrerAccount.selfBusinessInUSD = 100000 * 10 ** 18;
+    // function setDefaults() private {
+    //     AccountStruct storage defaultReferrerAccount = _mappingAccounts[
+    //         _defaultReferrer
+    //     ];
+    //     defaultReferrerAccount.self = _defaultReferrer;
+    //     defaultReferrerAccount.parent = _defaultReferrer;
+    //     defaultReferrerAccount.selfBusinessInUSD = 100000 * 10 ** 18;
 
-        _randomUserList.push(_defaultReferrer);
-        _supportedChainLinkOracleAddress.push(
-            0x0567F2323251f0Aab15c8dFb1967E4e8A7D42aeE
-        );
-        _supportedChainLinkOracleAddress.push(
-            0x9c85f470f9ba23dFC4fE9531933C2ce2c1739c39
-        );
-        _mappingOracle[0x0567F2323251f0Aab15c8dFb1967E4e8A7D42aeE] = true;
-        _mappingOracle[0x9c85f470f9ba23dFC4fE9531933C2ce2c1739c39] = true;
-    }
+    //     _randomUserList.push(_defaultReferrer);
+    //     _supportedChainLinkOracleAddress.push(
+    //         0x0567F2323251f0Aab15c8dFb1967E4e8A7D42aeE
+    //     );
+    //     _supportedChainLinkOracleAddress.push(
+    //         0x9c85f470f9ba23dFC4fE9531933C2ce2c1739c39
+    //     );
+    //     _mappingOracle[0x0567F2323251f0Aab15c8dFb1967E4e8A7D42aeE] = true;
+    //     _mappingOracle[0x9c85f470f9ba23dFC4fE9531933C2ce2c1739c39] = true;
+    // }
 
     function updateUpgradePlans(
         uint256[] calldata _valueToUpgradeInDecimals

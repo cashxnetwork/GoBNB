@@ -13,7 +13,7 @@ export const CheckReferrerActive = ({
 }) => {
   const { referrerAddress } = useParams<{ referrerAddress: `0x${string}` }>();
   const referrerBusiness = useGetUserBusiness(referrerAddress);
-  const isReferrerActive = referrerBusiness?.data?.selfBusinessInUSD > 0;
+  const isReferrerActive = referrerBusiness?.data?.[0] > 0;
   // const isReferrerActive = true;
 
   return (
