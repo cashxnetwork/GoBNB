@@ -1,10 +1,11 @@
 import { Heading, Icon, VStack, Wrap } from "@chakra-ui/react";
 import { AiOutlineFire } from "react-icons/ai";
-import { CiTimer } from "react-icons/ci";
-import { HiUserGroup } from "react-icons/hi";
-import { useGetRegistrationsStats } from "../../../hooks/ReferralHooks";
-import { PageWrapper } from "../../../components/PageWrapper";
+import { CiTimer, CiTrophy } from "react-icons/ci";
+import { HiOutlineUserGroup, HiUserGroup } from "react-icons/hi";
 import { formatEther } from "viem";
+import { PageWrapper } from "../../../components/PageWrapper";
+import { useGetRegistrationsStats } from "../../../hooks/ReferralHooks";
+import { MdOutlineGroups } from "react-icons/md";
 
 export const RegistrationStats = () => {
   const registrationStats = useGetRegistrationsStats()?.data;
@@ -12,26 +13,32 @@ export const RegistrationStats = () => {
   const registrationValues = [
     {
       name: "Total Users",
-      icon: AiOutlineFire,
+      icon: HiOutlineUserGroup,
       value: registrationStats?.[0] ?? 0n,
       children: "Users"
     },
     {
       name: "Total Registration Value",
       icon: AiOutlineFire,
-      value: Number(Number(formatEther(registrationStats?.[1] ?? 0n))).toFixed(2),
+      value: Number(Number(formatEther(registrationStats?.[1] ?? 0n))).toFixed(
+        2
+      ),
       children: "USD"
     },
     {
       name: "Referral Reward Distributed",
-      icon: HiUserGroup,
-      value: Number(Number(formatEther(registrationStats?.[2] ?? 0n))).toFixed(2),
+      icon: CiTrophy,
+      value: Number(Number(formatEther(registrationStats?.[2] ?? 0n))).toFixed(
+        2
+      ),
       children: "USD"
     },
     {
       name: "Weekly Reward Distributed",
       icon: CiTimer,
-      value: Number(Number(formatEther(registrationStats?.[3] ?? 0n))).toFixed(2),
+      value: Number(Number(formatEther(registrationStats?.[3] ?? 0n))).toFixed(
+        2
+      ),
       children: "USD"
     }
   ];
@@ -41,10 +48,9 @@ export const RegistrationStats = () => {
         {registrationValues?.map((valuesObject, key) => {
           return (
             <VStack key={key}>
-              <Icon as={valuesObject?.icon} boxSize={20}></Icon>
+              <Icon as={valuesObject?.icon} boxSize={20} strokeWidth={2}></Icon>
               <Heading>
-                {valuesObject?.value}{" "}
-                {valuesObject?.children}
+                {valuesObject?.value} {valuesObject?.children}
               </Heading>
               <Heading size="sm" w={150} textAlign="center">
                 {valuesObject?.name}
