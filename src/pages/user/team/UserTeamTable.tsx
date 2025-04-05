@@ -33,8 +33,8 @@ function UserTeamTable({ userAddress }: { userAddress: `0x${string}` }) {
         <Tbody>
           {userTeamCount > 0 ? (
             userTeam.map((team, key: number) => {
-              const userTeamAddress = team?.[0] as `0x${string}`;
-              const userTeamLevel = Number(team?.[1]);
+              const userTeamAddress = team?.teamMember as `0x${string}`;
+              const userTeamLevel = Number(team?.level);
               return (
                 <UserTeamTableComponent
                   key={key}
