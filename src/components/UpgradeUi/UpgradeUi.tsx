@@ -131,7 +131,7 @@ function UpgradeUI({
             <Heading textAlign="center" color="twitter.500" fontSize="7xl">
               $
               {upgradePlan?.valueToUpgradeInUSD
-                ? Number(formatEther(upgradePlan?.valueToUpgradeInUSD))
+                ? Number(formatEther(upgradePlan?.valueToUpgradeInUSD ?? BigInt(0)))
                 : 0}
             </Heading>
           </HStack>

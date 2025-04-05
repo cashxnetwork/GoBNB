@@ -1,12 +1,11 @@
 import { Divider, Heading } from "@chakra-ui/react";
-import React from "react";
 import { RiUser6Fill } from "react-icons/ri";
+import { formatEther } from "viem";
+import { CardContainer } from "../../../components/CardContainer";
 import {
   useGetUserLevelToUpgrade,
   useGetUserRewards
 } from "../../../hooks/ReferralHooks";
-import { CardContainer } from "../../../components/CardContainer";
-import { formatEther } from "viem";
 
 export const UserCard = ({ userAddress }: { userAddress: `0x${string}` }) => {
   const userRewards = useGetUserRewards(userAddress);
@@ -17,7 +16,7 @@ export const UserCard = ({ userAddress }: { userAddress: `0x${string}` }) => {
     <CardContainer heading="Hey Welcome!" icon={RiUser6Fill}>
       <Heading textAlign="center">You have earned</Heading>
       <Heading color="yellow.500">
-        ${Number(formatEther(userAllRewards))?.toFixed(2)}
+        ${Number(formatEther(userAllRewards ?? BigInt(0)))?.toFixed(2)}
       </Heading>
       <Divider></Divider>
       <Heading>Level</Heading>

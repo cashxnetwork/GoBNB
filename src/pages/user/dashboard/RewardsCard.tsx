@@ -14,19 +14,19 @@ export default function RewardsCard({
   const userValueObject = [
     {
       name: "Referral Rewards",
-      value: formatEther(userRewardsObject?.[0])
+      value: formatEther(userRewardsObject?.[0] ?? BigInt(0))
     },
     {
       name: "Weekly Rewards",
-      value: formatEther(userRewardsObject?.[1])
+      value: formatEther(userRewardsObject?.[1] ?? BigInt(0))
     },
     {
       name: "Upgrade Rewards",
-      value: formatEther(userRewardsObject?.[2])
+      value: formatEther(userRewardsObject?.[2] ?? BigInt(0))
     },
     {
       name: "Total Rewards",
-      value: formatEther(userRewardsObject?.[3])
+      value: formatEther(userRewardsObject?.[3] ?? BigInt(0))
     }
   ];
 

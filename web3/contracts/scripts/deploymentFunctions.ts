@@ -76,7 +76,7 @@ export async function getProviderDetails(): Promise<ProviderDetailsType> {
   const [deployer] = await ethers.getSigners();
   const provider = ethers.provider;
   const balance = await provider.getBalance(deployer.address);
-  const formattedBalance = ethers.formatEther(balance);
+  const formattedBalance = ethers.formatEther(balance ?? 0n);
   const chainId = parseInt(await provider.send("eth_chainId", []));
 
   console.log(

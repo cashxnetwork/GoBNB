@@ -191,25 +191,6 @@ contract RegistrationUpgradeable is
         __UUPSUpgradeable_init();
     }
 
-    // function setDefaults() private {
-    //     AccountStruct storage defaultReferrerAccount = _mappingAccounts[
-    //         _defaultReferrer
-    //     ];
-    //     defaultReferrerAccount.self = _defaultReferrer;
-    //     defaultReferrerAccount.parent = _defaultReferrer;
-    //     defaultReferrerAccount.selfBusinessInUSD = 100000 * 10 ** 18;
-
-    //     _randomUserList.push(_defaultReferrer);
-    //     _supportedChainLinkOracleAddress.push(
-    //         0x0567F2323251f0Aab15c8dFb1967E4e8A7D42aeE
-    //     );
-    //     _supportedChainLinkOracleAddress.push(
-    //         0x9c85f470f9ba23dFC4fE9531933C2ce2c1739c39
-    //     );
-    //     _mappingOracle[0x0567F2323251f0Aab15c8dFb1967E4e8A7D42aeE] = true;
-    //     _mappingOracle[0x9c85f470f9ba23dFC4fE9531933C2ce2c1739c39] = true;
-    // }
-
     function updateUpgradePlans(
         uint256[] calldata _valueToUpgradeInDecimals
     ) external onlyOwner {
