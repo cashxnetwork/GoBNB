@@ -31,7 +31,7 @@ function UserTeamTableComponent({
               p={1}
               borderRadius={"md"}
             >
-              L{userLevel}
+              L{userLevel + 1}
             </Badge>
             <AddressActionButtons address="userAddress"></AddressActionButtons>
           </Tag>
