@@ -31,7 +31,7 @@ const metadata = {
 // 3. Set the networks
 const networks: [AppKitNetwork, ...AppKitNetwork[]] = [bsc];
 const selectedBSCRPC =
-    "https://virtual.binance.rpc.tenderly.co/63fe494d-8f02-4c20-8c89-8ebe76ce720f";
+    "https://virtual.binance.rpc.tenderly.co/8fd48115-891c-40ad-a6af-debbec99bc01";
 if (!selectedBSCRPC) {
     throw new Error("Please set your BSC_RPC in .env");
 }
