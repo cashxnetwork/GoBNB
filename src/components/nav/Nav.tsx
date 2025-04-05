@@ -20,7 +20,7 @@ export const Nav = () => {
             zIndex={111}
             backdropFilter={"blur(20px)"}
         >
-            <Flex maxW={20} bgColor="black" borderRadius={"full"} p={2}>
+            <Flex maxW={24} borderRadius={"full"} p={2}>
                 <Logo />
             </Flex>
             <Spacer></Spacer>
