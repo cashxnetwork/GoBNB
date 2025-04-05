@@ -25,7 +25,7 @@ function UserTeamTable({ userAddress }: { userAddress: `0x${string}` }) {
       <Table size="lg">
         <Thead>
           <Tr>
-            <Th>Level</Th>
+            <Th>Downline</Th>
             <Th>Address</Th>
             <Th isNumeric>Referred By</Th>
           </Tr>

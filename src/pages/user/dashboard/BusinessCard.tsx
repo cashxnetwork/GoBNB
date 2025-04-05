@@ -31,7 +31,7 @@ function BusinessCard({ userAddress }: { userAddress: `0x${string}` }) {
         return (
           <BalanceContainer
             heading={valueObject?.name}
-            value={Number(Number(formatEther(valueObject?.value ?? 0))?.toFixed(3))}
+            value={Number(Number(formatEther(valueObject?.value ?? 0))?.toFixed(2))}
             key={key}
           ></BalanceContainer>
         );

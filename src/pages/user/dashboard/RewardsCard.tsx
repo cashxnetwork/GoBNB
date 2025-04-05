@@ -14,19 +14,19 @@ export default function RewardsCard({
   const userValueObject = [
     {
       name: "Referral Rewards",
-      value: userRewardsObject?.[0]
+      value: formatEther(userRewardsObject?.[0])
     },
     {
       name: "Weekly Rewards",
-      value: userRewardsObject?.[1]
+      value: formatEther(userRewardsObject?.[1])
     },
     {
       name: "Upgrade Rewards",
-      value: userRewardsObject?.[2]
+      value: formatEther(userRewardsObject?.[2])
     },
     {
       name: "Total Rewards",
-      value: userRewardsObject?.[3]
+      value: formatEther(userRewardsObject?.[3])
     }
   ];
 
@@ -37,7 +37,7 @@ export default function RewardsCard({
           <BalanceContainer
             key={key}
             heading={valueObject?.name}
-            value={Number(formatEther(valueObject?.value ?? 0))}
+            value={Number(valueObject?.value)?.toFixed(2)}
           ></BalanceContainer>
         );
       })}

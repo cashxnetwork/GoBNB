@@ -16,7 +16,7 @@ export const BalanceContainer = ({
   icons
 }: {
   heading: string;
-  value: number;
+  value: number | string;
   currencySymbol?: string;
   showIcon?: boolean;
   icons?: string[];
