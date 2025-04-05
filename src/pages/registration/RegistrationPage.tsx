@@ -25,6 +25,7 @@ export default function RegistrationPage() {
   const userSelfBusiness = userBusiness?.data?.[0];
   // const userSelfBusiness = BigInt(1);
   const userLevelToUpgrade = useGetUserLevelToUpgrade(address);
+
   const nativePrice = useNativePrice(
     currentNetwork?.priceOracleAddress as `0x${string}` | undefined
   );
@@ -32,7 +33,6 @@ export default function RegistrationPage() {
   const valueToRegister = useNeedNativeToRegister(
     currentNetwork.priceOracleAddress!
   )?.data;
-  console.log("valueToRegister", valueToRegister);
 
   return (
     <CheckReferrerActive check={userSelfBusiness > 0 ? false : true}>
@@ -50,9 +50,7 @@ export default function RegistrationPage() {
           <>
             <RegistrationUI
               referrerAddress={referrerAddress}
-              valueInDecimals={
-                Number(formatEther(valueToRegister ?? 0))
-              }
+              valueInDecimals={Number(formatEther(valueToRegister ?? 0))}
               currentNetwork={currentNetwork}
             ></RegistrationUI>
             {/* <Heading>New User</Heading> */}
@@ -61,15 +59,15 @@ export default function RegistrationPage() {
           <>
             <UpgradeUI
               upgradePlan={
-                upgradePlans?.data?.[0]?.[Number(userLevelToUpgrade)]
+                upgradePlans?.data?.[0]?.[Number(userLevelToUpgrade?.data?.[0])]
               }
               valueInDecimals={
-                upgradePlans?.data?.[0]?.[Number(userLevelToUpgrade)]
+                upgradePlans?.data
                   ? Number(
                     upgradePlans?.data?.[0]?.[
-                    Number(userLevelToUpgrade)
-                    ]?.[1] ?? 0
-                  ) / Number(nativePrice)
+                      Number(userLevelToUpgrade?.data?.[0])
+                    ]?.valueToUpgradeInUSD ?? 0
+                  ) / Number(nativePrice?.data ?? 0)
                   : 0
               }
               currentNetwork={currentNetwork}

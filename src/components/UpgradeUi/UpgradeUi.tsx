@@ -19,7 +19,7 @@ import {
   useToast
 } from "@chakra-ui/react";
 import { useAppKitAccount } from "@reown/appkit/react";
-import { parseEther } from "viem";
+import { formatEther, parseEther } from "viem";
 import {
   useBalance,
   useWaitForTransactionReceipt,
@@ -131,14 +131,14 @@ function UpgradeUI({
             <Heading textAlign="center" color="twitter.500" fontSize="7xl">
               $
               {upgradePlan?.valueToUpgradeInUSD
-                ? Number(upgradePlan?.valueToUpgradeInUSD) / 10 ** 18
+                ? Number(formatEther(upgradePlan?.valueToUpgradeInUSD))
                 : 0}
             </Heading>
           </HStack>
           <Heading size="sm">You have to pay</Heading>
           <Tag py={5} px={10} borderRadius="3xl" colorScheme="yellow">
             <HStack fontStyle="italic">
-              <Heading size="md">{valueInDecimals?.toFixed(3)}</Heading>
+              <Heading size="md">{valueInDecimals?.toFixed(4)}...</Heading>
               <Heading fontWeight={500} size="md">
                 BNB
               </Heading>

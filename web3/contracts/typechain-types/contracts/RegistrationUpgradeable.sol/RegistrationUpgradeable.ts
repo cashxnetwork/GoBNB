@@ -12,7 +12,7 @@ import type {
   AddressLike,
   ContractRunner,
   ContractMethod,
-  Listener,
+  Listener
 } from "ethers";
 import type {
   TypedContractEvent,
@@ -20,7 +20,7 @@ import type {
   TypedEventLog,
   TypedLogDescription,
   TypedListener,
-  TypedContractMethod,
+  TypedContractMethod
 } from "../../common";
 
 export type UpgradeStructStruct = {
@@ -898,9 +898,7 @@ export interface RegistrationUpgradeable extends BaseContract {
   getFunction(
     nameOrSignature: "getAllUsers"
   ): TypedContractMethod<[], [string[]], "view">;
-  getFunction(
-    nameOrSignature: "getContractDefaults"
-  ): TypedContractMethod<
+  getFunction(nameOrSignature: "getContractDefaults"): TypedContractMethod<
     [],
     [
       [string, bigint, string, bigint, string, bigint] & {
@@ -924,9 +922,7 @@ export interface RegistrationUpgradeable extends BaseContract {
   getFunction(
     nameOrSignature: "getRandomUserList"
   ): TypedContractMethod<[], [string[]], "view">;
-  getFunction(
-    nameOrSignature: "getRegistrationsStats"
-  ): TypedContractMethod<
+  getFunction(nameOrSignature: "getRegistrationsStats"): TypedContractMethod<
     [],
     [
       [bigint, bigint, bigint, bigint] & {
@@ -941,9 +937,7 @@ export interface RegistrationUpgradeable extends BaseContract {
   getFunction(
     nameOrSignature: "getSupportedChainLinkOracleAddress"
   ): TypedContractMethod<[], [string[]], "view">;
-  getFunction(
-    nameOrSignature: "getUpgradePlans"
-  ): TypedContractMethod<
+  getFunction(nameOrSignature: "getUpgradePlans"): TypedContractMethod<
     [],
     [
       [UpgradeStructStructOutput[], bigint] & {
@@ -967,9 +961,7 @@ export interface RegistrationUpgradeable extends BaseContract {
     [AccountStructStructOutput],
     "view"
   >;
-  getFunction(
-    nameOrSignature: "getUserBusiness"
-  ): TypedContractMethod<
+  getFunction(nameOrSignature: "getUserBusiness"): TypedContractMethod<
     [_userAddress: AddressLike],
     [
       [bigint, bigint, bigint, bigint] & {
@@ -988,9 +980,7 @@ export interface RegistrationUpgradeable extends BaseContract {
     [[bigint, bigint] & { level: bigint; totalUpgradeValueInUSD: bigint }],
     "view"
   >;
-  getFunction(
-    nameOrSignature: "getUserRewards"
-  ): TypedContractMethod<
+  getFunction(nameOrSignature: "getUserRewards"): TypedContractMethod<
     [_userAddress: AddressLike],
     [
       [bigint, bigint, bigint, bigint] & {
@@ -1002,9 +992,7 @@ export interface RegistrationUpgradeable extends BaseContract {
     ],
     "view"
   >;
-  getFunction(
-    nameOrSignature: "getUserTeam"
-  ): TypedContractMethod<
+  getFunction(nameOrSignature: "getUserTeam"): TypedContractMethod<
     [_userAddress: AddressLike],
     [
       [
