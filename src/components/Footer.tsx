@@ -48,7 +48,7 @@ export default function Footer() {
             borderRadius="xl"
             rightIcon={<ExternalLinkIcon />}
             as="a"
-            href="https://docs.cashx.network/welcome-to-cashx/cashx-or-introduction"
+            href="https://docs.gobnb.network"
             target="_blank"
           >
             Read Documentation
