@@ -1,4 +1,4 @@
-import { ChevronRightIcon } from '@chakra-ui/icons';
+import { ChevronRightIcon } from "@chakra-ui/icons";
 import {
   Button,
   ButtonProps,
@@ -11,9 +11,9 @@ import {
   ModalFooter,
   ModalHeader,
   Spacer,
-  VStack,
-} from '@chakra-ui/react';
-import { BsArrowUpRightCircleFill } from 'react-icons/bs';
+  VStack
+} from "@chakra-ui/react";
+import { BsArrowUpRightCircleFill } from "react-icons/bs";
 
 function ModalConfirmTransactions({
   onClose,
@@ -27,11 +27,11 @@ function ModalConfirmTransactions({
   onConfirm: () => void;
   transactionName: string;
   outCurrencyObject?: {
-    logo: string,
-    symbol: string
+    logo: string;
+    symbol: string;
   };
   outCurrencyValue?: number;
-  buttonProps?: ButtonProps
+  buttonProps?: ButtonProps;
 }) {
   return (
     <>
@@ -48,7 +48,7 @@ function ModalConfirmTransactions({
             ></Image>
             <Heading size="md">{outCurrencyObject?.symbol}</Heading>
             <Spacer />
-            <Heading size="md">{outCurrencyValue}</Heading>
+            <Heading size="md">{outCurrencyValue?.toFixed(5)}...</Heading>
             <Icon as={BsArrowUpRightCircleFill} color="red"></Icon>
           </HStack>
         </VStack>

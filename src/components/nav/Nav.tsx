@@ -11,7 +11,6 @@ export const Nav = () => {
             py={5}
             px={2}
             h={70}
-            bgColor={"yellow.500"}
             borderRadius={"2xl"}
             color="black"
             spacing={1}
@@ -19,6 +18,7 @@ export const Nav = () => {
             position={"sticky"}
             top={0}
             zIndex={111}
+            backdropFilter={"blur(20px)"}
         >
             <Flex maxW={20} bgColor="black" borderRadius={"full"} p={2}>
                 <Logo />

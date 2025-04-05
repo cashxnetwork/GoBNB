@@ -48,6 +48,7 @@ export const ColorModeSwitcher: React.FC<ColorModeSwitcherProps> = () => {
       layout
       transition={{ type: "spring", stiffness: 500, damping: 30 }}
       backgroundColor={"black"}
+      borderWidth={"thin"}
     >
       <MotionCenter
         boxSize={[5, 7]}

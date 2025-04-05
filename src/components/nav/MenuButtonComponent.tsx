@@ -18,10 +18,22 @@ export default function MenuButtonComponent() {
     <>
       <IconButton
         aria-label="Menu Button"
-        icon={<MenuIcon strokeWidth={5} size={"25px"} cursor={"pointer"} color="black" />}
-        size="sm"
+        icon={
+          <MenuIcon
+            strokeWidth={5}
+            size={"25px"}
+            cursor={"pointer"}
+            color="white"
+          />
+        }
+        size="md"
         onClick={onOpen}
         rounded="full"
+        borderWidth={"thin"}
+        bgColor={"black"}
+        _hover={{
+          bgColor: "gray.900"
+        }}
       />
       <Drawer
         isOpen={isOpen}

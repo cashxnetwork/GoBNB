@@ -1,4 +1,4 @@
-import { createAppKit } from "@reown/appkit/react";
+import { createAppKit, useAppKitTheme } from "@reown/appkit/react";
 
 import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
 import { AppKitNetwork, bsc } from "@reown/appkit/networks";
@@ -6,6 +6,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { http, WagmiProvider } from "wagmi";
 import { CloudAuthSIWX } from "@reown/appkit-siwx";
 import { projectName } from "../constants/projectConfig";
+import { useColorMode } from "@chakra-ui/react";
+import { useEffect } from "react";
 
 // 0. Setup queryClient
 const queryClient = new QueryClient();
@@ -66,6 +68,12 @@ createAppKit({
 });
 
 export function ProviderReown({ children }: { children: React.ReactNode }) {
+    const { setThemeMode } = useAppKitTheme();
+    const { colorMode } = useColorMode()
+
+    useEffect(() => {
+        setThemeMode(colorMode === "light" ? "light" : "dark");
+    }, [colorMode, setThemeMode]);
     return (
         <WagmiProvider config={wagmiAdapter.wagmiConfig}>
             <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>

@@ -45,6 +45,7 @@ export const WalletConnectButton = () => {
             }}
             leftIcon={leftIcon}
             fontWeight={900}
+            borderWidth={"thin"}
         >
             {address ? addressShorted : walletText}
         </Button>
