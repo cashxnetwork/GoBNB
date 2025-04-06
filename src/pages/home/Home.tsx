@@ -23,8 +23,8 @@ export const Home = () => {
       <AboutUs />
       <Features />
       <NetworkJoining />
-      <Tokenomics />
-      <Roadmap />
+      {/* <Tokenomics /> */}
+      {/* <Roadmap /> */}
       {/* <TokenDistribution /> */}
       <PowerOfBlockchainComponent />
     </VStack>

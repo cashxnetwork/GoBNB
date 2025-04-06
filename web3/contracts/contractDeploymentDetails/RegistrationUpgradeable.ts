@@ -1,5 +1,5 @@
 
-        // Updated on 2025-04-05T08:38:48.475Z
+        // Updated on 2025-04-06T15:23:53.479Z
         import { ContractDeploymentObjectsBlockchain } from '../scripts/deploymentFunctions';
         export const RegistrationUpgradeableABI = [
   {
