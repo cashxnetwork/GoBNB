@@ -32,7 +32,7 @@ function WeeklyReward() {
       <VStack>
         <HStack>
           <Heading>{weeklyRewardsToBeDistributedValue}</Heading>
-          <Heading color="orange.500">USDT</Heading>
+          <Heading color="orange.500">USD</Heading>
         </HStack>
       </VStack>
       <VStack>

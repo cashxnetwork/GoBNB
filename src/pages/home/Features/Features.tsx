@@ -29,7 +29,7 @@ export const Features = () => {
     },
     {
       heading: "Liquidity Generation",
-      subHeading: "5 USD of every registration goes to liquidity.",
+      subHeading: "4 USD of every registration goes to liquidity.",
       icon: FcFeedIn
     },
     {

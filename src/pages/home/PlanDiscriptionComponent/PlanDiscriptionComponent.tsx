@@ -73,8 +73,8 @@ const features = [
   {
     heading: "Liquidity Pool",
     icon: BsFire,
-    text: "5 USD to liquidity of every registration.",
-    value: 20
+    text: "4 USD to liquidity of every registration.",
+    value: 16
   },
   {
     heading: "Weekly Rewards",
