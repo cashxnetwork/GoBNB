@@ -69,7 +69,7 @@ createAppKit({
 
 export function ProviderReown({ children }: { children: React.ReactNode }) {
     const { setThemeMode } = useAppKitTheme();
-    const { colorMode } = useColorMode()
+    const { colorMode } = useColorMode();
 
     useEffect(() => {
         setThemeMode(colorMode === "light" ? "light" : "dark");

@@ -2,15 +2,15 @@
   "manifestVersion": "3.2",
   "proxies": [
     {
-      "address": "0xD62Bcfc166Db729daB508873D286cd96d629acA4",
-      "txHash": "0x141dbc6fee57dac7af392ee7fe10079383478a37b56226720b279136bd4ee769",
+      "address": "0xaD3e9a8fb73628E23b96b3D2b83178b7A1B91C2e",
+      "txHash": "0x29feb82b9e28771e448cb3f8641e87bb7809330aba53dda512d422499281d86b",
       "kind": "uups"
     }
   ],
   "impls": {
-    "8b784f4d0e15805f2fd1f38df31d03498f9e8c2b429bc8f73c222077691b2ffd": {
-      "address": "0x4B71e4C05A2AE79EF25105d2995e9a85e13309F2",
-      "txHash": "0xd4882d8d97e503553ca67cfe95119a9522d68abf7485eee522f4b2650122cc1e",
+    "db9df0619eb5fbb76e72a75e12e934cbf6516f518196281219946c0907e77007": {
+      "address": "0x1d6119614BE3D9520648685A8eD7d7E4E92567d8",
+      "txHash": "0xb49bae03c05a63aace5eb8f36edced443d5ff3bce9fa340985ae0c24e5072f41",
       "layout": {
         "solcVersion": "0.8.26",
         "storage": [
@@ -20,7 +20,7 @@
             "slot": "0",
             "type": "t_array(t_address)dyn_storage",
             "contract": "RegistrationUpgradeable",
-            "src": "contracts/RegistrationUpgradeable.sol:68"
+            "src": "contracts/RegistrationUpgradeable.sol:69"
           },
           {
             "label": "_randomUserList",
@@ -28,7 +28,7 @@
             "slot": "1",
             "type": "t_array(t_address)dyn_storage",
             "contract": "RegistrationUpgradeable",
-            "src": "contracts/RegistrationUpgradeable.sol:69"
+            "src": "contracts/RegistrationUpgradeable.sol:70"
           },
           {
             "label": "_totalRegistrationValueInUSD",
@@ -36,7 +36,7 @@
             "slot": "2",
             "type": "t_uint256",
             "contract": "RegistrationUpgradeable",
-            "src": "contracts/RegistrationUpgradeable.sol:71"
+            "src": "contracts/RegistrationUpgradeable.sol:72"
           },
           {
             "label": "_referralPaidInUSD",
@@ -44,7 +44,7 @@
             "slot": "3",
             "type": "t_uint256",
             "contract": "RegistrationUpgradeable",
-            "src": "contracts/RegistrationUpgradeable.sol:72"
+            "src": "contracts/RegistrationUpgradeable.sol:73"
           },
           {
             "label": "_randomRewardsPaidInUSD",
@@ -52,7 +52,7 @@
             "slot": "4",
             "type": "t_uint256",
             "contract": "RegistrationUpgradeable",
-            "src": "contracts/RegistrationUpgradeable.sol:73"
+            "src": "contracts/RegistrationUpgradeable.sol:74"
           },
           {
             "label": "_weeklyRewardsPaidInUSD",
@@ -60,7 +60,7 @@
             "slot": "5",
             "type": "t_uint256",
             "contract": "RegistrationUpgradeable",
-            "src": "contracts/RegistrationUpgradeable.sol:74"
+            "src": "contracts/RegistrationUpgradeable.sol:75"
           },
           {
             "label": "_teamWallet",
@@ -68,7 +68,7 @@
             "slot": "6",
             "type": "t_address",
             "contract": "RegistrationUpgradeable",
-            "src": "contracts/RegistrationUpgradeable.sol:76"
+            "src": "contracts/RegistrationUpgradeable.sol:77"
           },
           {
             "label": "_teamWalletRate",
@@ -76,7 +76,7 @@
             "slot": "6",
             "type": "t_uint8",
             "contract": "RegistrationUpgradeable",
-            "src": "contracts/RegistrationUpgradeable.sol:77"
+            "src": "contracts/RegistrationUpgradeable.sol:78"
           },
           {
             "label": "_valueToCreateLiquidityInWei",
@@ -84,7 +84,7 @@
             "slot": "7",
             "type": "t_uint256",
             "contract": "RegistrationUpgradeable",
-            "src": "contracts/RegistrationUpgradeable.sol:79"
+            "src": "contracts/RegistrationUpgradeable.sol:80"
           },
           {
             "label": "_liquidityCreateRate",
@@ -92,7 +92,7 @@
             "slot": "8",
             "type": "t_uint8",
             "contract": "RegistrationUpgradeable",
-            "src": "contracts/RegistrationUpgradeable.sol:80"
+            "src": "contracts/RegistrationUpgradeable.sol:81"
           },
           {
             "label": "_weeklyRewardValueInWei",
@@ -100,7 +100,7 @@
             "slot": "9",
             "type": "t_uint256",
             "contract": "RegistrationUpgradeable",
-            "src": "contracts/RegistrationUpgradeable.sol:82"
+            "src": "contracts/RegistrationUpgradeable.sol:83"
           },
           {
             "label": "_weeklyRewardRate",
@@ -108,7 +108,7 @@
             "slot": "10",
             "type": "t_uint8",
             "contract": "RegistrationUpgradeable",
-            "src": "contracts/RegistrationUpgradeable.sol:83"
+            "src": "contracts/RegistrationUpgradeable.sol:84"
           },
           {
             "label": "_weeklyRewardTimestamp",
@@ -116,7 +116,7 @@
             "slot": "11",
             "type": "t_uint256",
             "contract": "RegistrationUpgradeable",
-            "src": "contracts/RegistrationUpgradeable.sol:84"
+            "src": "contracts/RegistrationUpgradeable.sol:85"
           },
           {
             "label": "_levelRatesFixed",
@@ -124,7 +124,7 @@
             "slot": "12",
             "type": "t_uint8",
             "contract": "RegistrationUpgradeable",
-            "src": "contracts/RegistrationUpgradeable.sol:87"
+            "src": "contracts/RegistrationUpgradeable.sol:88"
           },
           {
             "label": "_levelsToCount",
@@ -132,7 +132,7 @@
             "slot": "12",
             "type": "t_uint8",
             "contract": "RegistrationUpgradeable",
-            "src": "contracts/RegistrationUpgradeable.sol:88"
+            "src": "contracts/RegistrationUpgradeable.sol:89"
           },
           {
             "label": "_refereeLimit",
@@ -140,7 +140,7 @@
             "slot": "13",
             "type": "t_uint256",
             "contract": "RegistrationUpgradeable",
-            "src": "contracts/RegistrationUpgradeable.sol:89"
+            "src": "contracts/RegistrationUpgradeable.sol:90"
           },
           {
             "label": "_defaultReferrer",
@@ -148,7 +148,7 @@
             "slot": "14",
             "type": "t_address",
             "contract": "RegistrationUpgradeable",
-            "src": "contracts/RegistrationUpgradeable.sol:91"
+            "src": "contracts/RegistrationUpgradeable.sol:92"
           },
           {
             "label": "_registrationValueInUSD",
@@ -156,7 +156,7 @@
             "slot": "15",
             "type": "t_uint256",
             "contract": "RegistrationUpgradeable",
-            "src": "contracts/RegistrationUpgradeable.sol:92"
+            "src": "contracts/RegistrationUpgradeable.sol:93"
           },
           {
             "label": "_liquidityWallet",
@@ -164,7 +164,7 @@
             "slot": "16",
             "type": "t_address",
             "contract": "RegistrationUpgradeable",
-            "src": "contracts/RegistrationUpgradeable.sol:94"
+            "src": "contracts/RegistrationUpgradeable.sol:95"
           },
           {
             "label": "_supportedChainLinkOracleAddress",
@@ -172,15 +172,15 @@
             "slot": "17",
             "type": "t_array(t_address)dyn_storage",
             "contract": "RegistrationUpgradeable",
-            "src": "contracts/RegistrationUpgradeable.sol:96"
+            "src": "contracts/RegistrationUpgradeable.sol:97"
           },
           {
             "label": "_mappingAccounts",
             "offset": 0,
             "slot": "18",
-            "type": "t_mapping(t_address,t_struct(AccountStruct)1643_storage)",
+            "type": "t_mapping(t_address,t_struct(AccountStruct)1645_storage)",
             "contract": "RegistrationUpgradeable",
-            "src": "contracts/RegistrationUpgradeable.sol:98"
+            "src": "contracts/RegistrationUpgradeable.sol:99"
           },
           {
             "label": "_mappingUpgrade",
@@ -188,7 +188,7 @@
             "slot": "19",
             "type": "t_mapping(t_uint8,t_struct(UpgradeStruct)1597_storage)",
             "contract": "RegistrationUpgradeable",
-            "src": "contracts/RegistrationUpgradeable.sol:99"
+            "src": "contracts/RegistrationUpgradeable.sol:100"
           },
           {
             "label": "_mappingOracle",
@@ -196,7 +196,7 @@
             "slot": "20",
             "type": "t_mapping(t_address,t_bool)",
             "contract": "RegistrationUpgradeable",
-            "src": "contracts/RegistrationUpgradeable.sol:100"
+            "src": "contracts/RegistrationUpgradeable.sol:101"
           }
         ],
         "types": {
@@ -258,7 +258,7 @@
             "label": "mapping(address => bool)",
             "numberOfBytes": "32"
           },
-          "t_mapping(t_address,t_struct(AccountStruct)1643_storage)": {
+          "t_mapping(t_address,t_struct(AccountStruct)1645_storage)": {
             "label": "mapping(address => struct AccountStruct)",
             "numberOfBytes": "32"
           },
@@ -266,7 +266,7 @@
             "label": "mapping(uint8 => struct UpgradeStruct)",
             "numberOfBytes": "32"
           },
-          "t_struct(AccountStruct)1643_storage": {
+          "t_struct(AccountStruct)1645_storage": {
             "label": "struct AccountStruct",
             "members": [
               {
@@ -358,9 +358,15 @@
                 "type": "t_uint256",
                 "offset": 0,
                 "slot": "14"
+              },
+              {
+                "label": "timestampJoined",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "15"
               }
             ],
-            "numberOfBytes": "480"
+            "numberOfBytes": "512"
           },
           "t_struct(RefereeStruct)1602_storage": {
             "label": "struct RefereeStruct",

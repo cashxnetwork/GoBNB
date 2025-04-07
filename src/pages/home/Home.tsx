@@ -11,6 +11,7 @@ import { Roadmap } from './Roadmap/Roadmap';
 import { SupportedChainComponent } from './SupportedChainComponent';
 import { Tokenomics } from './Tokenomics/Tokenomics';
 import WeeklyReward from './WeeklyReward/WeeklyReward';
+import { LatestUserRegistrations } from './LatestUserRegistrations/LatestUserRegistrations';
 
 export const Home = () => {
   return (
@@ -23,6 +24,7 @@ export const Home = () => {
       <AboutUs />
       <Features />
       <NetworkJoining />
+      <LatestUserRegistrations />
       {/* <Tokenomics /> */}
       {/* <Roadmap /> */}
       {/* <TokenDistribution /> */}

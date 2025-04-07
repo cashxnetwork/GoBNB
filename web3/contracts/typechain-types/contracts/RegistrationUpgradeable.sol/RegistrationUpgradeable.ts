@@ -66,6 +66,7 @@ export type AccountStructStruct = {
   weeklyRewardsInUSD: BigNumberish;
   upgradeRewardsInUSD: BigNumberish;
   userRandomIndex: BigNumberish;
+  timestampJoined: BigNumberish;
 };
 
 export type AccountStructStructOutput = [
@@ -83,7 +84,8 @@ export type AccountStructStructOutput = [
   referralRewardsInUSD: bigint,
   weeklyRewardsInUSD: bigint,
   upgradeRewardsInUSD: bigint,
-  userRandomIndex: bigint
+  userRandomIndex: bigint,
+  timestampJoined: bigint
 ] & {
   self: string;
   parent: string;
@@ -100,6 +102,7 @@ export type AccountStructStructOutput = [
   weeklyRewardsInUSD: bigint;
   upgradeRewardsInUSD: bigint;
   userRandomIndex: bigint;
+  timestampJoined: bigint;
 };
 
 export interface RegistrationUpgradeableInterface extends Interface {

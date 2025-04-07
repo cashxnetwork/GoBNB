@@ -58,6 +58,7 @@ struct AccountStruct {
     uint256 weeklyRewardsInUSD;
     uint256 upgradeRewardsInUSD;
     uint256 userRandomIndex;
+    uint256 timestampJoined;
 }
 
 contract RegistrationUpgradeable is
@@ -409,6 +410,7 @@ contract RegistrationUpgradeable is
         }
 
         userAccount.selfBusinessInUSD += _msgValueInUSD;
+        userAccount.timestampJoined = block.timestamp;
 
         if (!_hasReferrer(userAccount)) {
             _addReferrer(_referrer, _referee);

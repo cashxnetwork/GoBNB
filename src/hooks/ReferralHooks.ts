@@ -160,6 +160,26 @@ export const useGetRegistrationsStats = () => {
   };
 };
 
+export const useGetAllUsers = () => {
+  const value = useGetReadContract("getAllUsers");
+  return {
+    ...value,
+    data: value.data as unknown as Awaited<
+      ReturnType<RegistrationUpgradeable["getAllUsers"]>
+    >
+  };
+};
+
+export const useGetUserAccount = (userAddress: `0x${string}`) => {
+  const value = useGetReadContract("getUserAccount", [userAddress]);
+  return {
+    ...value,
+    data: value.data as unknown as Awaited<
+      ReturnType<RegistrationUpgradeable["getUserAccount"]>
+    >
+  };
+};
+
 // export const useGetUserLimits = (userAddress: `0x${string}` | undefined) => {
 //   const value = useGetReadContract("getUserLimits", [
 //     userAddress ?? zeroAddress
