@@ -1,12 +1,4 @@
-import React from "react";
 import {
-    useGetAllUsers,
-    useGetUserAccount
-} from "../../../hooks/ReferralHooks";
-import { PageWrapper } from "../../../components/PageWrapper";
-import { HeadingComponent } from "../../../components/Ui";
-import {
-    Badge,
     Heading,
     HStack,
     Skeleton,
@@ -15,6 +7,12 @@ import {
     Text,
     VStack
 } from "@chakra-ui/react";
+import { PageWrapper } from "../../../components/PageWrapper";
+import { HeadingComponent } from "../../../components/Ui";
+import {
+    useGetAllUsers,
+    useGetUserAccount
+} from "../../../hooks/ReferralHooks";
 import { shortenAddress } from "../../../utils/web3Functions";
 
 const ShowLatestUserComponent = ({
@@ -52,7 +50,6 @@ const ShowLatestUserComponent = ({
                         : diffInDays > 365
                             ? `${Math.floor(diffInDays / 365)} Years Ago`
                             : `${diffInMinutes}`}{" "}
-                Min Ago
             </Text>
         </HStack>
     );
