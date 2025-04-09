@@ -1,19 +1,18 @@
 import { createAppKit, useAppKitTheme } from "@reown/appkit/react";
 
+import { useColorMode } from "@chakra-ui/react";
 import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
 import { AppKitNetwork, bsc } from "@reown/appkit/networks";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { http, WagmiProvider } from "wagmi";
-import { CloudAuthSIWX } from "@reown/appkit-siwx";
-import { projectName } from "../constants/projectConfig";
-import { useColorMode } from "@chakra-ui/react";
 import { useEffect } from "react";
+import { WagmiProvider } from "wagmi";
+import { projectName } from "../constants/projectConfig";
 
 // 0. Setup queryClient
 const queryClient = new QueryClient();
 
 // 1. Get projectId from https://cloud.reown.com
-const projectId = import.meta.env.VITE_REOWN_PROJECT_ID;
+const projectId = "5b5423a72a2c8ad388197b2b2c87bbf3";
 if (!projectId) {
     throw new Error("Please set your REOWN_PROJECT_ID in .env");
 }
@@ -60,11 +59,8 @@ createAppKit({
     projectId,
     metadata,
     features: {
-        analytics: true, // Optional - defaults to your Cloud configuration
-        allWallets: true,
-        socials: ["apple", "google", "x", "facebook", "discord", "github"]
-    },
-    siwx: new CloudAuthSIWX()
+        analytics: true // Optional - defaults to your Cloud configuration
+    }
 });
 
 export function ProviderReown({ children }: { children: React.ReactNode }) {
