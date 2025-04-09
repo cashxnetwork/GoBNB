@@ -38,17 +38,17 @@ if (!selectedBSCRPC) {
 // 4. Create Wagmi Adapter
 const wagmiAdapter = new WagmiAdapter({
     networks,
-    transports: {
-        [bsc.id]: http(selectedBSCRPC, {
-            batch: {
-                batchSize: 1000,
-                wait: 100
-            },
-            retryCount: 5,
-            retryDelay: 1000,
-            timeout: 30000 // 30 seconds
-        })
-    },
+    // transports: {
+    //     [bsc.id]: http(selectedBSCRPC, {
+    //         batch: {
+    //             batchSize: 1000,
+    //             wait: 100
+    //         },
+    //         retryCount: 5,
+    //         retryDelay: 1000,
+    //         timeout: 30000 // 30 seconds
+    //     })
+    // },
     projectId,
     ssr: true
 });
