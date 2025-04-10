@@ -270,7 +270,7 @@ contract RegistrationUpgradeable is
         return _randomUserList[randomIndex];
     }
 
-    function _addToRandomList(AccountStruct memory _userAccount) private {
+    function _addToRandomList(AccountStruct storage _userAccount) private {
         _userAccount.userRandomIndex = _randomUserList.length;
         _randomUserList.push(_userAccount.self);
         emit AddedToRandomList(_userAccount.self);

@@ -12,7 +12,11 @@
     },
     {
       "address": "0x42D755d59F867Fc358f49b7b546d7aA8e92a484F",
-      "txHash": "0x96a956a94a786f1a47921caa90cd43ce94ccc1c321e54b05042ecb6f3d89cf5f",
+      "kind": "uups"
+    },
+    {
+      "address": "0x131543348379E2741b5AE9510644beA3b4bef754",
+      "txHash": "0xc9a80b452a9b741b89440907987fcbb82efa162142e462495a7b60a426ee624e",
       "kind": "uups"
     }
   ],
@@ -930,9 +934,8 @@
         "0xbC9D029d3844C2439bAd7A50aF8c1177414e751D"
       ]
     },
-    "c159851b241d880561c610d9e5cce5f431d228517e5a70411f0782879be030e1": {
+    "5b4075f52d71a3a17b20c8b7dc110b8f90a8c1d005e7fdead9dbae28a4ad3f35": {
       "address": "0xe5D78c550a0BEA2F26F35bB8C5516E702Ab7a981",
-      "txHash": "0xd0277c484b00ba3bcfa38290ae408eaba07a823eeaa2946ee64fe15b215c650f",
       "layout": {
         "solcVersion": "0.8.26",
         "storage": [
@@ -1383,7 +1386,11 @@
             }
           ]
         }
-      }
+      },
+      "allAddresses": [
+        "0xe5D78c550a0BEA2F26F35bB8C5516E702Ab7a981",
+        "0xF4817D8b10CFFf4F46F2daDbAa0CCf47268Ae03f"
+      ]
     }
   }
 }

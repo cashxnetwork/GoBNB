@@ -586,8 +586,8 @@
       ]
     },
     "/Users/suru.martian/Documents/GitHub/go-bnb-vite/web3/contracts/contracts/RegistrationUpgradeable.sol": {
-      "lastModificationDate": 1744275160076,
-      "contentHash": "c851283b4abba6b0c635ff230e972315",
+      "lastModificationDate": 1744304340889,
+      "contentHash": "f375188a4d5d4c4a2209b3c7be5de9e1",
       "sourceName": "contracts/RegistrationUpgradeable.sol",
       "solcConfig": {
         "version": "0.8.26",
