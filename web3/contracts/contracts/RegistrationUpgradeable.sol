@@ -359,7 +359,10 @@ contract RegistrationUpgradeable is
                 break;
             }
 
+            if (userAccount.self == userAccount.referrer) break;
+
             referrerAccount = _mappingAccounts[userAccount.referrer];
+
             referrerAccount.team.push(
                 TeamStruct({teamMember: _referee, level: i + 1})
             );
@@ -655,10 +658,10 @@ contract RegistrationUpgradeable is
         );
         uint256 weeklyCounterEndTime = _weeklyRewardTimestamp + 7 days;
         uint256 _currentTime = block.timestamp;
-        require(
-            _currentTime >= weeklyCounterEndTime,
-            "Weekly time is not over yet."
-        );
+        // require(
+        //     _currentTime >= weeklyCounterEndTime,
+        //     "Weekly time is not over yet."
+        // );
 
         require(_weeklyRewardValueInWei > 0, "No rewards to distribute");
 

@@ -5,7 +5,7 @@ import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
 import { AppKitNetwork, bsc } from "@reown/appkit/networks";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useEffect } from "react";
-import { WagmiProvider } from "wagmi";
+import { http, WagmiProvider } from "wagmi";
 import { projectName } from "../constants/projectConfig";
 
 // 0. Setup queryClient
@@ -37,17 +37,17 @@ if (!selectedBSCRPC) {
 // 4. Create Wagmi Adapter
 const wagmiAdapter = new WagmiAdapter({
     networks,
-    // transports: {
-    //     [bsc.id]: http(selectedBSCRPC, {
-    //         batch: {
-    //             batchSize: 1000,
-    //             wait: 100
-    //         },
-    //         retryCount: 5,
-    //         retryDelay: 1000,
-    //         timeout: 30000 // 30 seconds
-    //     })
-    // },
+    transports: {
+        [bsc.id]: http(selectedBSCRPC, {
+            batch: {
+                batchSize: 1000,
+                wait: 100
+            },
+            retryCount: 5,
+            retryDelay: 1000,
+            timeout: 30000 // 30 seconds
+        })
+    },
     projectId,
     ssr: true
 });

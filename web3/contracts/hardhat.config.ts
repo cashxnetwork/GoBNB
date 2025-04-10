@@ -108,8 +108,7 @@ const config: HardhatUserConfig = {
     bsc: {
       url: "https://bsc-dataseed1.binance.org/",
       accounts: [PRIVATE_KEY],
-      loggingEnabled: true,
-      gasMultiplier: 1.2
+      loggingEnabled: true
     }
   },
   etherscan: {

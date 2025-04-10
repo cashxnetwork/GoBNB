@@ -1,6 +1,6 @@
-// import { BeneficiaryContractUpgradeableDeploymentDetails } from "../contractDeploymentDetails/BeneficiaryContractUpgradeable";
-// import { upgradeContract } from "./deploymentFunctions";
+import { RegistrationUpgradeableDeploymentDetails } from "../contractDeploymentDetails/RegistrationUpgradeable";
+import { upgradeContract } from "./deploymentFunctions";
 
-// upgradeContract(BeneficiaryContractUpgradeableDeploymentDetails, true).then(
-//   () => console.log("contract upgraded")
-// );
+upgradeContract(RegistrationUpgradeableDeploymentDetails, true).then(() =>
+  console.log("contract upgraded")
+);
