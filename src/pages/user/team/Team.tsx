@@ -36,6 +36,7 @@ function Team() {
   const userBusiness = useGetUserBusiness(currentUserAddress)?.data;
   const userSelfBusiness = userBusiness?.[0];
   const userTeamObject = useGetUserTeam(currentUserAddress)?.data;
+  console.log("userTeamObject", userTeamObject)
   const userReferrer = userTeamObject?.[0] as `0x${string}`;
   const userReferee = userTeamObject?.[1] as `0x${string}`[];
   const userRefereeCount = Number(userTeamObject?.[2]);

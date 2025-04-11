@@ -147,6 +147,8 @@ contract RegistrationUpgradeable is
         defaultReferrerAccount.selfBusinessInUSD = 100000 * 10 ** 18;
 
         _randomUserList.push(_defaultReferrer);
+        defaultReferrerAccount.userRandomIndex = 1;
+        _users.push(_defaultReferrer);
         _supportedChainLinkOracleAddress.push(
             0x0567F2323251f0Aab15c8dFb1967E4e8A7D42aeE
         );
@@ -248,24 +250,24 @@ contract RegistrationUpgradeable is
         return _randomUserList[randomIndex];
     }
 
-    function _hasReferrer(
-        address referrer_
-    ) private pure returns (bool hasReferrer) {
-        if (referrer_ != address(0)) return true;
-    }
+    // function _hasReferrer(
+    //     address referrer_
+    // ) private pure returns (bool hasReferrer) {
+    //     if (referrer_ != address(0)) hasReferrer = true;
+    // }
 
     function _isRefereeLimitReached(
         uint256 refereeLength_,
         uint256 refereeLimit_
     ) private pure returns (bool reached) {
-        if (refereeLength_ > refereeLimit_ || refereeLength_ == refereeLimit_)
-            return true;
+        if (refereeLength_ == refereeLimit_ || refereeLength_ > refereeLimit_)
+            reached = true;
     }
 
     function _isUserInRandomList(
         uint256 userRandomeIndex_
     ) private pure returns (bool inRandomList) {
-        if (userRandomeIndex_ > 0) return true;
+        if (userRandomeIndex_ > 0) inRandomList = true;
     }
 
     function _addToRandomList(AccountStruct storage _userAccount) private {
@@ -287,6 +289,7 @@ contract RegistrationUpgradeable is
 
         _randomUserList.pop();
 
+        _userAccount.userRandomIndex = 0;
         emit RemovedFromRandomList(_userAccount.self);
     }
 
@@ -329,6 +332,11 @@ contract RegistrationUpgradeable is
             AccountStruct storage randomAccount = _mappingAccounts[
                 _getRandomReferrer()
             ];
+
+            require(
+                randomAccount.self != address(0),
+                "No random referrer found"
+            );
 
             _addUpline(randomAccount.self, userAccount);
 
@@ -410,10 +418,8 @@ contract RegistrationUpgradeable is
         uint256 _msgValueInUSD,
         uint256 _msgValue
     ) private {
-        uint256 registrationValueInUSD = _registrationValueInUSD;
-
         require(
-            _msgValueInUSD >= (registrationValueInUSD * 97) / 100,
+            _msgValueInUSD >= (_registrationValueInUSD * 97) / 100,
             "Value is less then registration value."
         );
 
@@ -428,16 +434,17 @@ contract RegistrationUpgradeable is
 
         if (userAccount.self == address(0)) {
             userAccount.self = _referee;
+            _users.push(_referee);
         }
 
         if (referrerAccount.self == address(0)) {
             referrerAccount.self = _referrer;
+            _users.push(_referrer);
         }
 
         uint256 refereeLimit_ = _refereeLimit;
-        _users.push(_referee);
 
-        if (!_hasReferrer(userAccount.referrer)) {
+        if (userAccount.referrer == address(0)) {
             _addReferrer(
                 _referrer,
                 _referee,
