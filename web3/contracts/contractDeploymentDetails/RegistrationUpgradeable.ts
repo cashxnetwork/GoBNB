@@ -1,5 +1,5 @@
 
-        // Updated on 2025-04-11T17:00:57.441Z
+        // Updated on 2025-04-11T18:35:05.409Z
         import { ContractDeploymentObjectsBlockchain } from '../scripts/deploymentFunctions';
         export const RegistrationUpgradeableABI = [
   {
@@ -1102,7 +1102,7 @@
         [56]: {
             isProxyContract: true,
             proxyAddress: '0x131543348379E2741b5AE9510644beA3b4bef754',
-            implementationAddress: '0x92AAFa56a89055A306E23c16c54C777b1865121F',
+            implementationAddress: '0x83F7F192eC57828B3486E4Eb004F2e6A2fF0CDB4',
             contractName: 'RegistrationUpgradeable',
             chainId: 56,
             deployer: '0xF449Fc2F66e5C8A83b72F730E461f770984ef0cd',
