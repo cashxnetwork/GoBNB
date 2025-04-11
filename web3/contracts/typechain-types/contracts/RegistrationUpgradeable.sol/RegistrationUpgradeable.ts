@@ -133,7 +133,6 @@ export interface RegistrationUpgradeableInterface extends Interface {
       | "renounceOwnership"
       | "setChainLinkOracleAddress"
       | "transferOwnership"
-      | "updateUpgradePlans"
       | "upgradeAccountNative"
       | "upgradeToAndCall"
   ): FunctionFragment;
@@ -257,10 +256,6 @@ export interface RegistrationUpgradeableInterface extends Interface {
     values: [AddressLike]
   ): string;
   encodeFunctionData(
-    functionFragment: "updateUpgradePlans",
-    values: [BigNumberish[]]
-  ): string;
-  encodeFunctionData(
     functionFragment: "upgradeAccountNative",
     values: [AddressLike]
   ): string;
@@ -361,10 +356,6 @@ export interface RegistrationUpgradeableInterface extends Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "transferOwnership",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "updateUpgradePlans",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -859,12 +850,6 @@ export interface RegistrationUpgradeable extends BaseContract {
     "nonpayable"
   >;
 
-  updateUpgradePlans: TypedContractMethod<
-    [_valueToUpgradeInDecimals: BigNumberish[]],
-    [void],
-    "nonpayable"
-  >;
-
   upgradeAccountNative: TypedContractMethod<
     [_chainLinkOracleAddress: AddressLike],
     [void],
@@ -1079,13 +1064,6 @@ export interface RegistrationUpgradeable extends BaseContract {
   getFunction(
     nameOrSignature: "transferOwnership"
   ): TypedContractMethod<[newOwner: AddressLike], [void], "nonpayable">;
-  getFunction(
-    nameOrSignature: "updateUpgradePlans"
-  ): TypedContractMethod<
-    [_valueToUpgradeInDecimals: BigNumberish[]],
-    [void],
-    "nonpayable"
-  >;
   getFunction(
     nameOrSignature: "upgradeAccountNative"
   ): TypedContractMethod<

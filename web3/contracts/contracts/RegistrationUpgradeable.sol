@@ -192,23 +192,20 @@ contract RegistrationUpgradeable is
         __UUPSUpgradeable_init();
     }
 
-    function updateUpgradePlans(
-        uint256[] calldata _valueToUpgradeInDecimals
-    ) external onlyOwner {
-        for (uint8 i; i < _valueToUpgradeInDecimals.length; ++i) {
-            _mappingUpgrade[i] = UpgradeStruct(
-                i + 1,
-                _valueToUpgradeInDecimals[i] * 10 ** 18
-            );
-        }
-    }
+    // function updateUpgradePlans(
+    //     uint256[] calldata _valueToUpgradeInDecimals
+    // ) external onlyOwner {
+    //     for (uint8 i; i < _valueToUpgradeInDecimals.length; ++i) {
+    //         _mappingUpgrade[i] = UpgradeStruct(
+    //             i + 1,
+    //             _valueToUpgradeInDecimals[i] * 10 ** 18
+    //         );
+    //     }
+    // }
 
     function _getUpgradePlansCount() private view returns (uint8 count) {
         for (uint8 i; i < 50; i++) {
-            if (_mappingUpgrade[i].id == 0) {
-                break;
-            }
-
+            if (_mappingUpgrade[i].id == 0) break;
             count++;
         }
     }
@@ -236,25 +233,6 @@ contract RegistrationUpgradeable is
         return _mappingUpgrade[_id];
     }
 
-    function _hasReferrer(
-        AccountStruct memory userAccount
-    ) private pure returns (bool hasReferrer) {
-        if (userAccount.referrer != address(0)) {
-            hasReferrer = true;
-        }
-    }
-
-    function _isRefereeLimitReached(
-        AccountStruct memory _userAccount
-    ) private view returns (bool reached) {
-        if (
-            _userAccount.referee.length > _refereeLimit ||
-            _userAccount.referee.length == _refereeLimit
-        ) {
-            reached = true;
-        }
-    }
-
     function _getRandomReferrer() private view returns (address) {
         uint256 randomHash = uint256(
             keccak256(
@@ -270,30 +248,63 @@ contract RegistrationUpgradeable is
         return _randomUserList[randomIndex];
     }
 
+    function _hasReferrer(
+        address referrer_
+    ) private pure returns (bool hasReferrer) {
+        if (referrer_ != address(0)) return true;
+    }
+
+    function _isRefereeLimitReached(
+        uint256 refereeLength_,
+        uint256 refereeLimit_
+    ) private pure returns (bool reached) {
+        if (refereeLength_ > refereeLimit_ || refereeLength_ == refereeLimit_)
+            return true;
+    }
+
+    function _isUserInRandomList(
+        uint256 userRandomeIndex_
+    ) private pure returns (bool inRandomList) {
+        if (userRandomeIndex_ > 0) return true;
+    }
+
     function _addToRandomList(AccountStruct storage _userAccount) private {
-        _userAccount.userRandomIndex = _randomUserList.length;
+        require(
+            _userAccount.userRandomIndex == 0,
+            "User is already in random list"
+        );
+
         _randomUserList.push(_userAccount.self);
+        _userAccount.userRandomIndex = _randomUserList.length;
         emit AddedToRandomList(_userAccount.self);
     }
 
     function _removeFromRandomList(AccountStruct storage _userAccount) private {
-        _randomUserList[_userAccount.userRandomIndex] = _randomUserList[
+        require(_userAccount.userRandomIndex > 0, "User is not in random list");
+        _randomUserList[_userAccount.userRandomIndex - 1] = _randomUserList[
             _randomUserList.length - 1
         ];
+
         _randomUserList.pop();
 
         emit RemovedFromRandomList(_userAccount.self);
     }
 
     function _addUpline(
-        AccountStruct storage _referrerAccount,
+        address referrer_,
         AccountStruct storage _userAccount
     ) private {
-        _userAccount.referrer = _referrerAccount.self;
-        emit ReferrerAdded(_referrerAccount.self, _userAccount.self);
+        _userAccount.referrer = referrer_;
+        emit ReferrerAdded(referrer_, _userAccount.self);
     }
 
-    function _addReferrer(address _referrer, address _referee) private {
+    function _addReferrer(
+        address _referrer,
+        address _referee,
+        uint256 refereeLimit_,
+        uint256 levelsToCount_,
+        uint256 valueInUSD_
+    ) private {
         AccountStruct storage userAccount = _mappingAccounts[_referee];
         require(_referrer != _referee, "You cannot refer yourself.");
 
@@ -305,23 +316,21 @@ contract RegistrationUpgradeable is
             referrerAccount = _mappingAccounts[_referrer];
         }
 
-        if (!_isRefereeLimitReached(referrerAccount)) {
-            _addUpline(referrerAccount, userAccount);
+        bool isReferrerLimitReached = _isRefereeLimitReached(
+            referrerAccount.referee.length,
+            refereeLimit_
+        );
 
-            referrerAccount.referee.push(_referee);
-
-            if (_isRefereeLimitReached(referrerAccount)) {
+        if (isReferrerLimitReached) {
+            if (_isUserInRandomList(referrerAccount.userRandomIndex)) {
                 _removeFromRandomList(referrerAccount);
             }
-        } else {
-            _removeFromRandomList(referrerAccount);
+
             AccountStruct storage randomAccount = _mappingAccounts[
                 _getRandomReferrer()
             ];
-            _addUpline(randomAccount, userAccount);
-            if (_isRefereeLimitReached(randomAccount)) {
-                _removeFromRandomList(randomAccount);
-            }
+
+            _addUpline(randomAccount.self, userAccount);
 
             emit RegistrationAssigned(
                 referrerAccount.self,
@@ -336,11 +345,28 @@ contract RegistrationUpgradeable is
                 })
             );
 
-            if (userAccount.selfBusinessInUSD == 0) {
-                _addToRandomList(userAccount);
-            }
-
             randomAccount.referee.push(_referee);
+
+            if (
+                _isRefereeLimitReached(
+                    randomAccount.referee.length,
+                    refereeLimit_
+                )
+            ) {
+                _removeFromRandomList(randomAccount);
+            }
+        } else {
+            _addUpline(referrerAccount.self, userAccount);
+            referrerAccount.referee.push(_referee);
+
+            if (
+                _isRefereeLimitReached(
+                    referrerAccount.referee.length,
+                    refereeLimit_
+                )
+            ) {
+                _removeFromRandomList(referrerAccount);
+            }
         }
 
         if (userAccount.parent == address(0)) {
@@ -352,9 +378,7 @@ contract RegistrationUpgradeable is
             );
         }
 
-        uint8 levelsToCount = _levelsToCount;
-
-        for (uint8 i; i < levelsToCount; i++) {
+        for (uint8 i; i < levelsToCount_; i++) {
             if (userAccount.referrer == address(0)) {
                 break;
             }
@@ -367,29 +391,34 @@ contract RegistrationUpgradeable is
                 TeamStruct({teamMember: _referee, level: i + 1})
             );
 
+            referrerAccount.teamBusinessInUSD += valueInUSD_;
+
             emit TeamAddressAdded(referrerAccount.self, _referee, i + 1);
 
             userAccount = referrerAccount;
         }
     }
 
+    function _distributeReferral(
+        AccountStruct storage userAccount_,
+        uint8 levelRates_
+    ) private {}
+
     function _registrationNative(
         address _referrer,
         address _referee,
         uint256 _msgValueInUSD,
-        uint256 _msgValue,
-        uint256 _price
+        uint256 _msgValue
     ) private {
         uint256 registrationValueInUSD = _registrationValueInUSD;
 
         require(
-            _msgValueInUSD >= (registrationValueInUSD * 95) / 100,
+            _msgValueInUSD >= (registrationValueInUSD * 97) / 100,
             "Value is less then registration value."
         );
 
         uint8 levelRates = _levelRatesFixed;
         uint8 levelsToCount = _levelsToCount;
-        uint256 totalReferralPaidInUSD;
 
         AccountStruct storage userAccount = _mappingAccounts[_referee];
         AccountStruct storage referrerAccount = _mappingAccounts[_referrer];
@@ -405,21 +434,22 @@ contract RegistrationUpgradeable is
             referrerAccount.self = _referrer;
         }
 
-        if (userAccount.selfBusinessInUSD == 0) {
-            _users.push(_referee);
-            if (!_isRefereeLimitReached(userAccount)) {
-                _addToRandomList(userAccount);
-            }
-        }
+        uint256 refereeLimit_ = _refereeLimit;
+        _users.push(_referee);
 
-        userAccount.selfBusinessInUSD += _msgValueInUSD;
-        userAccount.timestampJoined = block.timestamp;
-
-        if (!_hasReferrer(userAccount)) {
-            _addReferrer(_referrer, _referee);
+        if (!_hasReferrer(userAccount.referrer)) {
+            _addReferrer(
+                _referrer,
+                _referee,
+                refereeLimit_,
+                levelsToCount,
+                _msgValueInUSD
+            );
         } else {
             emit ReferrerNoAdded("User Already have referrer set.");
         }
+
+        _addToRandomList(userAccount);
 
         emit Registration(
             userAccount.parent,
@@ -429,7 +459,7 @@ contract RegistrationUpgradeable is
         );
 
         uint256 referralValueInWei = (_msgValue * levelRates) / 100;
-        uint256 referrealValueInUSD = _valueToUSD(referralValueInWei, _price);
+        uint256 referrealValueInUSD = (_msgValueInUSD * levelRates) / 100;
         AccountStruct storage parentAccount = _mappingAccounts[
             userAccount.parent
         ];
@@ -444,35 +474,23 @@ contract RegistrationUpgradeable is
             );
 
             parentAccount.referralRewardsInUSD += referrealValueInUSD;
+            _referralPaidInUSD += referrealValueInUSD;
             parentAccount.directBusinessInUSD += _msgValueInUSD;
-        }
-
-        totalReferralPaidInUSD += referrealValueInUSD;
-
-        for (uint8 i; i < levelsToCount; i++) {
-            if (!_hasReferrer(userAccount)) {
-                break;
-            }
-
-            referrerAccount = _mappingAccounts[userAccount.referrer];
-
-            referrerAccount.teamBusinessInUSD += _msgValueInUSD;
-
-            userAccount = referrerAccount;
         }
 
         uint256 teamValue = (_msgValue * _teamWalletRate) / 100;
         payable(_teamWallet).transfer(teamValue);
         emit TeamWalletRewardPaid(_teamWallet, teamValue);
 
-        _referralPaidInUSD += totalReferralPaidInUSD;
-        _totalRegistrationValueInUSD += _msgValueInUSD;
-
         uint256 liquidityValue = (_msgValue * _liquidityCreateRate) / 100;
         payable(_liquidityWallet).transfer(liquidityValue);
         _valueToCreateLiquidityInWei += liquidityValue;
 
+        userAccount.selfBusinessInUSD += _msgValueInUSD;
+        userAccount.timestampJoined = block.timestamp;
+
         _weeklyRewardValueInWei += (_msgValue * _weeklyRewardRate) / 100;
+        _totalRegistrationValueInUSD += _msgValueInUSD;
     }
 
     function registrationNative(
@@ -488,13 +506,7 @@ contract RegistrationUpgradeable is
         uint256 msgValue = msg.value;
         uint256 priceInUSD = _priceInUSDWei(_chainLinkOracleAddress);
         uint256 _msgValueInUSD = _valueToUSD(msgValue, priceInUSD);
-        _registrationNative(
-            _referrer,
-            msg.sender,
-            _msgValueInUSD,
-            msgValue,
-            priceInUSD
-        );
+        _registrationNative(_referrer, msg.sender, _msgValueInUSD, msgValue);
     }
 
     function _upgradeIdNative(

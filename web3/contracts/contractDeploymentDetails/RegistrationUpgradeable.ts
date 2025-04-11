@@ -1,5 +1,5 @@
 
-        // Updated on 2025-04-10T17:53:59.065Z
+        // Updated on 2025-04-11T17:00:57.441Z
         import { ContractDeploymentObjectsBlockchain } from '../scripts/deploymentFunctions';
         export const RegistrationUpgradeableABI = [
   {
@@ -1065,19 +1065,6 @@
   {
     "inputs": [
       {
-        "internalType": "uint256[]",
-        "name": "_valueToUpgradeInDecimals",
-        "type": "uint256[]"
-      }
-    ],
-    "name": "updateUpgradePlans",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
         "internalType": "address",
         "name": "_chainLinkOracleAddress",
         "type": "address"
@@ -1115,7 +1102,7 @@
         [56]: {
             isProxyContract: true,
             proxyAddress: '0x131543348379E2741b5AE9510644beA3b4bef754',
-            implementationAddress: '0xe5D78c550a0BEA2F26F35bB8C5516E702Ab7a981',
+            implementationAddress: '0x92AAFa56a89055A306E23c16c54C777b1865121F',
             contractName: 'RegistrationUpgradeable',
             chainId: 56,
             deployer: '0xF449Fc2F66e5C8A83b72F730E461f770984ef0cd',

@@ -1062,19 +1062,6 @@ export const RegistrationUpgradeableABI = [
   {
     "inputs": [
       {
-        "internalType": "uint256[]",
-        "name": "_valueToUpgradeInDecimals",
-        "type": "uint256[]"
-      }
-    ],
-    "name": "updateUpgradePlans",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
         "internalType": "address",
         "name": "_chainLinkOracleAddress",
         "type": "address"
