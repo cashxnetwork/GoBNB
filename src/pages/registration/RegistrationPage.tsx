@@ -1,4 +1,15 @@
-import { Divider, HStack, Heading, Icon, VStack } from "@chakra-ui/react";
+import {
+  Divider,
+  HStack,
+  Heading,
+  Icon,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  VStack
+} from "@chakra-ui/react";
 import { useAppKitAccount, useAppKitNetwork } from "@reown/appkit/react";
 import { FcGoodDecision } from "react-icons/fc";
 import { useParams } from "react-router-dom";
@@ -33,11 +44,9 @@ export default function RegistrationPage() {
     currentNetwork.priceOracleAddress!
   )?.data;
 
-
-
   return (
     <CheckReferrerActive check={userSelfBusiness > 0 ? false : true}>
-      <VStack spacing={10} py={100} minH={"100vh"}>
+      <VStack spacing={5} py={100} minH={"100vh"}>
         <VStack>
           <HStack>
             <Icon as={FcGoodDecision} boxSize={10}></Icon>
@@ -47,42 +56,57 @@ export default function RegistrationPage() {
           </HStack>
           <Divider />
         </VStack>
-        {Number(userSelfBusiness) === 0 ? (
-          <>
-            {/* <RegistrationUI
-              referrerAddress={referrerAddress}
-              valueInDecimals={Number(formatEther(valueToRegister ?? 0))}
-              currentNetwork={currentNetwork}
-            ></RegistrationUI> */}
-            <RegistrationUIAny
-              userAddress={address as `0x${string}`}
-              referrerAddress={referrerAddress}
-              valueInDecimals={Number(formatEther(valueToRegister ?? 0))}
-              currentNetwork={currentNetwork}
-            ></RegistrationUIAny>
-            {/* <Heading>New User</Heading> */}
-          </>
-        ) : (
-          <>
-            <UpgradeUI
-              upgradePlan={
-                upgradePlans?.data?.[0]?.[Number(userLevelToUpgrade?.data?.[0])]
-              }
-              valueInDecimals={
-                upgradePlans?.data
-                  ? Number(
-                    upgradePlans?.data?.[0]?.[
+        <Tabs>
+          <TabList>
+            <Tab>Register yourself</Tab>
+            <Tab>Register your friend</Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel>
+              {Number(userSelfBusiness) === 0 ? (
+                <>
+                  <RegistrationUI
+                    referrerAddress={referrerAddress}
+                    valueInDecimals={Number(formatEther(valueToRegister ?? 0))}
+                    currentNetwork={currentNetwork}
+                  ></RegistrationUI>
+
+                  {/* <Heading>New User</Heading> */}
+                </>
+              ) : (
+                <>
+                  <UpgradeUI
+                    upgradePlan={
+                      upgradePlans?.data?.[0]?.[
                       Number(userLevelToUpgrade?.data?.[0])
-                    ]?.valueToUpgradeInUSD ?? 0
-                  ) / Number(nativePrice?.data ?? 0)
-                  : 0
-              }
-              currentNetwork={currentNetwork}
-            ></UpgradeUI>
-            {/* <Heading>Old User</Heading> */}
-          </>
-        )}
-        ;
+                      ]
+                    }
+                    valueInDecimals={
+                      upgradePlans?.data
+                        ? Number(
+                          upgradePlans?.data?.[0]?.[
+                            Number(userLevelToUpgrade?.data?.[0])
+                          ]?.valueToUpgradeInUSD ?? 0
+                        ) / Number(nativePrice?.data ?? 0)
+                        : 0
+                    }
+                    currentNetwork={currentNetwork}
+                  ></UpgradeUI>
+                  {/* <Heading>Old User</Heading> */}
+                </>
+              )}
+            </TabPanel>
+            <TabPanel>
+              <RegistrationUIAny
+                userAddress={address as `0x${string}`}
+                referrerAddress={referrerAddress}
+                valueInDecimals={Number(formatEther(valueToRegister ?? 0))}
+                currentNetwork={currentNetwork}
+              ></RegistrationUIAny>
+              ‚
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
       </VStack>
     </CheckReferrerActive>
   );

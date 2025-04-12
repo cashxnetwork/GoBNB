@@ -13,6 +13,7 @@ import { Tokenomics } from "../pages/home/Tokenomics/Tokenomics";
 import User from "../pages/user/User";
 import Dashboard from "../pages/user/dashboard/Dashboard";
 import Team from "../pages/user/team/Team";
+import { RegisterForSomeoneElse } from "../pages/registration/RegisterForSomeoneElse";
 
 export const RoutesConfig = createHashRouter([
   {
@@ -40,6 +41,14 @@ export const RoutesConfig = createHashRouter([
         element: (
           <ProtectedRoute>
             <RegistrationPage></RegistrationPage>
+          </ProtectedRoute>
+        )
+      },
+      {
+        path: "registration-your-friend/:referrerAddress?",
+        element: (
+          <ProtectedRoute>
+            <RegisterForSomeoneElse></RegisterForSomeoneElse>
           </ProtectedRoute>
         )
       },

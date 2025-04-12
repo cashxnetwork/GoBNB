@@ -48,12 +48,14 @@ function RegistrationUIAny({
   userAddress,
   referrerAddress,
   valueInDecimals,
-  currentNetwork
+  currentNetwork,
+  onSelectUserAddress
 }: {
   userAddress: `0x${string}`;
   referrerAddress: `0x${string}` | undefined;
   valueInDecimals: number;
   currentNetwork: CurrentNetworkInfo;
+  onSelectUserAddress?: (address: `0x${string}`) => void;
 }) {
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -66,7 +68,6 @@ function RegistrationUIAny({
   const currentReferrer = referrerAddress ? referrerAddress : zeroAddress;
   const userTeamObject = useGetUserTeam(selectedUser as `0x${string}`);
   const userReferrer = userTeamObject?.data?.[0];
-  console.log(userTeamObject);
   const userSelfBusiness = useGetUserBusiness(userReferrer as `0x${string}`)
     ?.data?.[0];
 
@@ -84,6 +85,8 @@ function RegistrationUIAny({
           isClosable: true
         });
       }
+
+      onSelectUserAddress?.(selectedUser as `0x${string}`);
     } catch (err: unknown) {
       console.error(err);
       toast({
