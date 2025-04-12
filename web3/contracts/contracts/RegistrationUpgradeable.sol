@@ -138,7 +138,7 @@ contract RegistrationUpgradeable is
     receive() external payable {}
 
     function initialize() public initializer {
-        _setDefaults(0xCEf5767039FA6a66016b802546F123E0c3Ddedc2);
+        _setDefaultReferrer(0xCEf5767039FA6a66016b802546F123E0c3Ddedc2);
         _supportedChainLinkOracleAddress.push(
             0x0567F2323251f0Aab15c8dFb1967E4e8A7D42aeE
         );
@@ -183,20 +183,25 @@ contract RegistrationUpgradeable is
         __UUPSUpgradeable_init();
     }
 
-    function _setDefaults(address user_) private {
+    function _setDefaultReferrer(address user_) private {
         AccountStruct storage userAccount = _mappingAccounts[user_];
-        userAccount.self = user_;
-        userAccount.selfBusinessInUSD = 100000 * 10 ** 18;
-        userAccount.timestampJoined = block.timestamp;
-        userAccount.userRandomIndex = 1;
-        _randomUserList.push(user_);
-        _users.push(user_);
+        if (userAccount.self == address(0)) {
+            userAccount.self = user_;
+            _users.push(user_);
+        }
+        if (userAccount.selfBusinessInUSD == 0)
+            userAccount.selfBusinessInUSD = 100000 * 10 ** 18;
+        if (userAccount.timestampJoined == 0) block.timestamp;
+        if (userAccount.userRandomIndex == 0) {
+            _randomUserList.push(user_);
+            userAccount.userRandomIndex = _randomUserList.length;
+        }
         _defaultReferrer = user_;
         emit DefaultReferrerUpdated(user_);
     }
 
     function setDefaultReferrer(address defaultReferrer_) external onlyOwner {
-        _setDefaults(defaultReferrer_);
+        _setDefaultReferrer(defaultReferrer_);
     }
 
     function updateUpgradePlans(
