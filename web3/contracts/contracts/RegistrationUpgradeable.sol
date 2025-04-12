@@ -133,22 +133,12 @@ contract RegistrationUpgradeable is
 
     event AddedToRandomList(address user);
     event RemovedFromRandomList(address user);
+    event DefaultReferrerUpdated(address defaultReferrer);
 
     receive() external payable {}
 
     function initialize() public initializer {
-        _defaultReferrer = 0xCEf5767039FA6a66016b802546F123E0c3Ddedc2; //Need to change
-        AccountStruct storage defaultReferrerAccount = _mappingAccounts[
-            _defaultReferrer
-        ];
-
-        defaultReferrerAccount.self = _defaultReferrer;
-        defaultReferrerAccount.parent = _defaultReferrer;
-        defaultReferrerAccount.selfBusinessInUSD = 100000 * 10 ** 18;
-
-        _randomUserList.push(_defaultReferrer);
-        defaultReferrerAccount.userRandomIndex = 1;
-        _users.push(_defaultReferrer);
+        _setDefaults(0xCEf5767039FA6a66016b802546F123E0c3Ddedc2);
         _supportedChainLinkOracleAddress.push(
             0x0567F2323251f0Aab15c8dFb1967E4e8A7D42aeE
         );
@@ -157,7 +147,7 @@ contract RegistrationUpgradeable is
         );
         _mappingOracle[0x0567F2323251f0Aab15c8dFb1967E4e8A7D42aeE] = true;
         _mappingOracle[0x9c85f470f9ba23dFC4fE9531933C2ce2c1739c39] = true;
-        _registrationValueInUSD = 25 * 10 ** 18;
+        _registrationValueInUSD = 25e18;
 
         _levelRatesFixed = 60;
         _levelsToCount = 8;
@@ -166,12 +156,11 @@ contract RegistrationUpgradeable is
         _teamWallet = 0x554F58fcfCEf95F82c8CF6eD9E51E5c79E341481; // need to change
         _teamWalletRate = 20;
 
+        _liquidityWallet = 0x3d7263AFa42C9d47c13cfCdcDc72A131077E5618; // yet to decide
         _liquidityCreateRate = 16;
+
         _weeklyRewardRate = 4;
         _weeklyRewardTimestamp = block.timestamp;
-
-        _liquidityWallet = 0x3d7263AFa42C9d47c13cfCdcDc72A131077E5618; // yet to decide
-        // setDefaults();
 
         uint256[7] memory _valueToUpgradeInDecimals = [
             uint256(20e18),
@@ -194,16 +183,32 @@ contract RegistrationUpgradeable is
         __UUPSUpgradeable_init();
     }
 
-    // function updateUpgradePlans(
-    //     uint256[] calldata _valueToUpgradeInDecimals
-    // ) external onlyOwner {
-    //     for (uint8 i; i < _valueToUpgradeInDecimals.length; ++i) {
-    //         _mappingUpgrade[i] = UpgradeStruct(
-    //             i + 1,
-    //             _valueToUpgradeInDecimals[i] * 10 ** 18
-    //         );
-    //     }
-    // }
+    function _setDefaults(address user_) private {
+        AccountStruct storage userAccount = _mappingAccounts[user_];
+        userAccount.self = user_;
+        userAccount.selfBusinessInUSD = 100000 * 10 ** 18;
+        userAccount.timestampJoined = block.timestamp;
+        userAccount.userRandomIndex = 1;
+        _randomUserList.push(user_);
+        _users.push(user_);
+        _defaultReferrer = user_;
+        emit DefaultReferrerUpdated(user_);
+    }
+
+    function setDefaultReferrer(address defaultReferrer_) external onlyOwner {
+        _setDefaults(defaultReferrer_);
+    }
+
+    function updateUpgradePlans(
+        uint256[] calldata _valueToUpgradeInDecimals
+    ) external onlyOwner {
+        for (uint8 i; i < _valueToUpgradeInDecimals.length; ++i) {
+            _mappingUpgrade[i] = UpgradeStruct(
+                i + 1,
+                _valueToUpgradeInDecimals[i] * 10 ** 18
+            );
+        }
+    }
 
     function _getUpgradePlansCount() private view returns (uint8 count) {
         for (uint8 i; i < 50; i++) {

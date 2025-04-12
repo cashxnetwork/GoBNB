@@ -18,7 +18,7 @@
     "@nomicfoundation/hardhat-ethers": "^3.0.0",
     "@nomicfoundation/hardhat-network-helpers": "^1.0.0",
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
-    "@tenderly/hardhat-tenderly": "^2.5.1",
+    "@tenderly/hardhat-tenderly": "^2.5.2",
     "@typechain/ethers-v6": "^0.5.0",
     "@typechain/hardhat": "^9.0.0",
     "@types/node": ">=18.0.0",

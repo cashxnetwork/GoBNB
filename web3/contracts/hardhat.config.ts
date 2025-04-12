@@ -7,12 +7,12 @@ import { subtask, task } from "hardhat/config";
 // Importing necessary modules and types from Hardhat and other libraries
 import "@nomicfoundation/hardhat-toolbox"; // Toolbox for Hardhat with commonly used plugins
 import "@openzeppelin/hardhat-upgrades"; // Plugin for upgrading smart contracts
-import "@tenderly/hardhat-tenderly"; // Tenderly integration for Hardhat
 import dotenv from "dotenv"; // Module for loading environment variables
 import fs from "fs";
 import { HardhatUserConfig } from "hardhat/config";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import path from "path";
+import "@tenderly/hardhat-tenderly";
 
 // Load environment variables from the .env file
 dotenv.config();
@@ -122,7 +122,8 @@ const config: HardhatUserConfig = {
   },
   tenderly: {
     project: TENDERLY_PROJECT_NAME,
-    username: TENDERLY_USERNAME
+    username: TENDERLY_USERNAME,
+    privateVerification: process.env.TENDERLY_PUBLIC_VERIFICATION !== "true"
   }
 };
 

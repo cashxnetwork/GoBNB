@@ -97,6 +97,19 @@ export const RegistrationUpgradeableABI = [
     "inputs": [
       {
         "indexed": false,
+        "internalType": "address",
+        "name": "defaultReferrer",
+        "type": "address"
+      }
+    ],
+    "name": "DefaultReferrerUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
         "internalType": "uint64",
         "name": "version",
         "type": "uint64"
@@ -1050,11 +1063,37 @@ export const RegistrationUpgradeableABI = [
     "inputs": [
       {
         "internalType": "address",
+        "name": "defaultReferrer_",
+        "type": "address"
+      }
+    ],
+    "name": "setDefaultReferrer",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
         "name": "newOwner",
         "type": "address"
       }
     ],
     "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "_valueToUpgradeInDecimals",
+        "type": "uint256[]"
+      }
+    ],
+    "name": "updateUpgradePlans",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

@@ -1,5 +1,5 @@
 
-        // Updated on 2025-04-11T19:33:17.696Z
+        // Updated on 2025-04-12T06:19:41.495Z
         import { ContractDeploymentObjectsBlockchain } from '../scripts/deploymentFunctions';
         export const RegistrationUpgradeableABI = [
   {
@@ -93,6 +93,19 @@
       }
     ],
     "name": "AddedToRandomList",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "defaultReferrer",
+        "type": "address"
+      }
+    ],
+    "name": "DefaultReferrerUpdated",
     "type": "event"
   },
   {
@@ -1053,11 +1066,37 @@
     "inputs": [
       {
         "internalType": "address",
+        "name": "defaultReferrer_",
+        "type": "address"
+      }
+    ],
+    "name": "setDefaultReferrer",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
         "name": "newOwner",
         "type": "address"
       }
     ],
     "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "_valueToUpgradeInDecimals",
+        "type": "uint256[]"
+      }
+    ],
+    "name": "updateUpgradePlans",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -1101,8 +1140,8 @@
         export const RegistrationUpgradeableDeploymentDetails: ContractDeploymentObjectsBlockchain = {
         [56]: {
             isProxyContract: true,
-            proxyAddress: '0x1DAD2D9D92Dc0E332A2364da804a0b6Ac4998636',
-            implementationAddress: '0xf6fCe895d0D6fC31B437552d8038E03549ED98a6',
+            proxyAddress: '0xf9835Fc16B8114d4E3b3d415268EAb54e9D325eC',
+            implementationAddress: '0xa9D8B32b2f970eD5F4eF51E89b6f99187e7bDD70',
             contractName: 'RegistrationUpgradeable',
             chainId: 56,
             deployer: '0xF449Fc2F66e5C8A83b72F730E461f770984ef0cd',

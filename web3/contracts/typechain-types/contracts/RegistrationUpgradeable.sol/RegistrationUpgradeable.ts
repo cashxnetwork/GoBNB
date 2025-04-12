@@ -132,7 +132,9 @@ export interface RegistrationUpgradeableInterface extends Interface {
       | "registrationNative"
       | "renounceOwnership"
       | "setChainLinkOracleAddress"
+      | "setDefaultReferrer"
       | "transferOwnership"
+      | "updateUpgradePlans"
       | "upgradeAccountNative"
       | "upgradeToAndCall"
   ): FunctionFragment;
@@ -140,6 +142,7 @@ export interface RegistrationUpgradeableInterface extends Interface {
   getEvent(
     nameOrSignatureOrTopic:
       | "AddedToRandomList"
+      | "DefaultReferrerUpdated"
       | "Initialized"
       | "OwnershipTransferred"
       | "ParentAdded"
@@ -252,8 +255,16 @@ export interface RegistrationUpgradeableInterface extends Interface {
     values: [AddressLike, boolean]
   ): string;
   encodeFunctionData(
+    functionFragment: "setDefaultReferrer",
+    values: [AddressLike]
+  ): string;
+  encodeFunctionData(
     functionFragment: "transferOwnership",
     values: [AddressLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "updateUpgradePlans",
+    values: [BigNumberish[]]
   ): string;
   encodeFunctionData(
     functionFragment: "upgradeAccountNative",
@@ -355,7 +366,15 @@ export interface RegistrationUpgradeableInterface extends Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
+    functionFragment: "setDefaultReferrer",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "transferOwnership",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "updateUpgradePlans",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -373,6 +392,18 @@ export namespace AddedToRandomListEvent {
   export type OutputTuple = [user: string];
   export interface OutputObject {
     user: string;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
+export namespace DefaultReferrerUpdatedEvent {
+  export type InputTuple = [defaultReferrer: AddressLike];
+  export type OutputTuple = [defaultReferrer: string];
+  export interface OutputObject {
+    defaultReferrer: string;
   }
   export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
   export type Filter = TypedDeferredTopicFilter<Event>;
@@ -844,8 +875,20 @@ export interface RegistrationUpgradeable extends BaseContract {
     "nonpayable"
   >;
 
+  setDefaultReferrer: TypedContractMethod<
+    [defaultReferrer_: AddressLike],
+    [void],
+    "nonpayable"
+  >;
+
   transferOwnership: TypedContractMethod<
     [newOwner: AddressLike],
+    [void],
+    "nonpayable"
+  >;
+
+  updateUpgradePlans: TypedContractMethod<
+    [_valueToUpgradeInDecimals: BigNumberish[]],
     [void],
     "nonpayable"
   >;
@@ -1062,8 +1105,18 @@ export interface RegistrationUpgradeable extends BaseContract {
     "nonpayable"
   >;
   getFunction(
+    nameOrSignature: "setDefaultReferrer"
+  ): TypedContractMethod<[defaultReferrer_: AddressLike], [void], "nonpayable">;
+  getFunction(
     nameOrSignature: "transferOwnership"
   ): TypedContractMethod<[newOwner: AddressLike], [void], "nonpayable">;
+  getFunction(
+    nameOrSignature: "updateUpgradePlans"
+  ): TypedContractMethod<
+    [_valueToUpgradeInDecimals: BigNumberish[]],
+    [void],
+    "nonpayable"
+  >;
   getFunction(
     nameOrSignature: "upgradeAccountNative"
   ): TypedContractMethod<
@@ -1085,6 +1138,13 @@ export interface RegistrationUpgradeable extends BaseContract {
     AddedToRandomListEvent.InputTuple,
     AddedToRandomListEvent.OutputTuple,
     AddedToRandomListEvent.OutputObject
+  >;
+  getEvent(
+    key: "DefaultReferrerUpdated"
+  ): TypedContractEvent<
+    DefaultReferrerUpdatedEvent.InputTuple,
+    DefaultReferrerUpdatedEvent.OutputTuple,
+    DefaultReferrerUpdatedEvent.OutputObject
   >;
   getEvent(
     key: "Initialized"
@@ -1209,6 +1269,17 @@ export interface RegistrationUpgradeable extends BaseContract {
       AddedToRandomListEvent.InputTuple,
       AddedToRandomListEvent.OutputTuple,
       AddedToRandomListEvent.OutputObject
+    >;
+
+    "DefaultReferrerUpdated(address)": TypedContractEvent<
+      DefaultReferrerUpdatedEvent.InputTuple,
+      DefaultReferrerUpdatedEvent.OutputTuple,
+      DefaultReferrerUpdatedEvent.OutputObject
+    >;
+    DefaultReferrerUpdated: TypedContractEvent<
+      DefaultReferrerUpdatedEvent.InputTuple,
+      DefaultReferrerUpdatedEvent.OutputTuple,
+      DefaultReferrerUpdatedEvent.OutputObject
     >;
 
     "Initialized(uint64)": TypedContractEvent<
