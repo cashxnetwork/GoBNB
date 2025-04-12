@@ -1,5 +1,5 @@
 
-        // Updated on 2025-04-12T06:19:41.495Z
+        // Updated on 2025-04-12T06:28:11.971Z
         import { ContractDeploymentObjectsBlockchain } from '../scripts/deploymentFunctions';
         export const RegistrationUpgradeableABI = [
   {
@@ -1023,6 +1023,29 @@
     "inputs": [
       {
         "internalType": "address",
+        "name": "userAddress_",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_referrer",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_chainLinkOracleAddress",
+        "type": "address"
+      }
+    ],
+    "name": "registrationAnyNative",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
         "name": "_referrer",
         "type": "address"
       },
@@ -1140,8 +1163,8 @@
         export const RegistrationUpgradeableDeploymentDetails: ContractDeploymentObjectsBlockchain = {
         [56]: {
             isProxyContract: true,
-            proxyAddress: '0xf9835Fc16B8114d4E3b3d415268EAb54e9D325eC',
-            implementationAddress: '0xa9D8B32b2f970eD5F4eF51E89b6f99187e7bDD70',
+            proxyAddress: '0xB38323Cfe3856F80eCAE72e49F4262D8FbAc799D',
+            implementationAddress: '0xD32bc4eC07DC1B727eFe4D428AAF2a23B196340E',
             contractName: 'RegistrationUpgradeable',
             chainId: 56,
             deployer: '0xF449Fc2F66e5C8A83b72F730E461f770984ef0cd',

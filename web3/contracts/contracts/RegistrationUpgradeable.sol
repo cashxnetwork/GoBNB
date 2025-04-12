@@ -521,6 +521,23 @@ contract RegistrationUpgradeable is
         _registrationNative(_referrer, msg.sender, _msgValueInUSD, msgValue);
     }
 
+    function registrationAnyNative(
+        address userAddress_,
+        address _referrer,
+        address _chainLinkOracleAddress
+    ) external payable {
+        require(_referrer != address(0), "Zero Address cannot be the referrer");
+        require(
+            _mappingOracle[_chainLinkOracleAddress] == true,
+            "Currency You selected not supported"
+        );
+
+        uint256 msgValue = msg.value;
+        uint256 priceInUSD = _priceInUSDWei(_chainLinkOracleAddress);
+        uint256 _msgValueInUSD = _valueToUSD(msgValue, priceInUSD);
+        _registrationNative(_referrer, userAddress_, _msgValueInUSD, msgValue);
+    }
+
     function _upgradeIdNative(
         uint256 _msgValue,
         uint256 _msgValueInUSD,

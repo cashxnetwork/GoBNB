@@ -1,9 +1,11 @@
 import { Divider, HStack, Heading, Icon, VStack } from "@chakra-ui/react";
-import { useAppKitNetwork } from "@reown/appkit/react";
+import { useAppKitAccount, useAppKitNetwork } from "@reown/appkit/react";
 import { FcGoodDecision } from "react-icons/fc";
 import { useParams } from "react-router-dom";
-import { useAccount } from "wagmi";
+import { formatEther } from "viem";
 import RegistrationUI from "../../components/RegistrationUI/RegistrationUI";
+import RegistrationUIAny from "../../components/RegistrationUI/RegistrationUIAny";
+import UpgradeUI from "../../components/UpgradeUi/UpgradeUi";
 import { supportedNetworkInfo } from "../../constants/SupportedNetworkInfo";
 import {
   useGetUserBusiness,
@@ -13,18 +15,15 @@ import {
   useUpgradePlans
 } from "../../hooks/ReferralHooks";
 import { CheckReferrerActive } from "./CheckReferrerActive";
-import UpgradeUI from "../../components/UpgradeUi/UpgradeUi";
-import { formatEther } from "viem";
 
 export default function RegistrationPage() {
   const { chainId } = useAppKitNetwork();
   const currentNetwork = supportedNetworkInfo[chainId as number];
-  const { address } = useAccount();
+  const { address } = useAppKitAccount();
   const { referrerAddress } = useParams<{ referrerAddress: `0x${string}` }>();
-  const userBusiness = useGetUserBusiness(address);
+  const userBusiness = useGetUserBusiness(address as `0x${string}`);
   const userSelfBusiness = userBusiness?.data?.[0];
-  // const userSelfBusiness = BigInt(1);
-  const userLevelToUpgrade = useGetUserLevelToUpgrade(address);
+  const userLevelToUpgrade = useGetUserLevelToUpgrade(address as `0x${string}`);
 
   const nativePrice = useNativePrice(
     currentNetwork?.priceOracleAddress as `0x${string}` | undefined
@@ -33,6 +32,8 @@ export default function RegistrationPage() {
   const valueToRegister = useNeedNativeToRegister(
     currentNetwork.priceOracleAddress!
   )?.data;
+
+
 
   return (
     <CheckReferrerActive check={userSelfBusiness > 0 ? false : true}>
@@ -48,11 +49,17 @@ export default function RegistrationPage() {
         </VStack>
         {Number(userSelfBusiness) === 0 ? (
           <>
-            <RegistrationUI
+            {/* <RegistrationUI
               referrerAddress={referrerAddress}
               valueInDecimals={Number(formatEther(valueToRegister ?? 0))}
               currentNetwork={currentNetwork}
-            ></RegistrationUI>
+            ></RegistrationUI> */}
+            <RegistrationUIAny
+              userAddress={address as `0x${string}`}
+              referrerAddress={referrerAddress}
+              valueInDecimals={Number(formatEther(valueToRegister ?? 0))}
+              currentNetwork={currentNetwork}
+            ></RegistrationUIAny>
             {/* <Heading>New User</Heading> */}
           </>
         ) : (

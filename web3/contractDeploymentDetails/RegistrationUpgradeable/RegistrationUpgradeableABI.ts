@@ -1020,6 +1020,29 @@ export const RegistrationUpgradeableABI = [
     "inputs": [
       {
         "internalType": "address",
+        "name": "userAddress_",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_referrer",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_chainLinkOracleAddress",
+        "type": "address"
+      }
+    ],
+    "name": "registrationAnyNative",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
         "name": "_referrer",
         "type": "address"
       },

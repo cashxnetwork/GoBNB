@@ -129,6 +129,7 @@ export interface RegistrationUpgradeableInterface extends Interface {
       | "needNativeToRegister"
       | "owner"
       | "proxiableUUID"
+      | "registrationAnyNative"
       | "registrationNative"
       | "renounceOwnership"
       | "setChainLinkOracleAddress"
@@ -243,6 +244,10 @@ export interface RegistrationUpgradeableInterface extends Interface {
     values?: undefined
   ): string;
   encodeFunctionData(
+    functionFragment: "registrationAnyNative",
+    values: [AddressLike, AddressLike, AddressLike]
+  ): string;
+  encodeFunctionData(
     functionFragment: "registrationNative",
     values: [AddressLike, AddressLike]
   ): string;
@@ -351,6 +356,10 @@ export interface RegistrationUpgradeableInterface extends Interface {
   decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "proxiableUUID",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "registrationAnyNative",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -861,6 +870,16 @@ export interface RegistrationUpgradeable extends BaseContract {
 
   proxiableUUID: TypedContractMethod<[], [string], "view">;
 
+  registrationAnyNative: TypedContractMethod<
+    [
+      userAddress_: AddressLike,
+      _referrer: AddressLike,
+      _chainLinkOracleAddress: AddressLike
+    ],
+    [void],
+    "payable"
+  >;
+
   registrationNative: TypedContractMethod<
     [_referrer: AddressLike, _chainLinkOracleAddress: AddressLike],
     [void],
@@ -1087,6 +1106,17 @@ export interface RegistrationUpgradeable extends BaseContract {
   getFunction(
     nameOrSignature: "proxiableUUID"
   ): TypedContractMethod<[], [string], "view">;
+  getFunction(
+    nameOrSignature: "registrationAnyNative"
+  ): TypedContractMethod<
+    [
+      userAddress_: AddressLike,
+      _referrer: AddressLike,
+      _chainLinkOracleAddress: AddressLike
+    ],
+    [void],
+    "payable"
+  >;
   getFunction(
     nameOrSignature: "registrationNative"
   ): TypedContractMethod<
