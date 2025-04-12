@@ -180,7 +180,7 @@ function RegistrationUIAny({
         abi: currentNetwork?.referralContractInterface,
         functionName: "registrationAnyNative",
         args: [
-          userAddress,
+          selectedUser,
           currentReferrer,
           currentNetwork?.priceOracleAddress
         ],
@@ -202,6 +202,7 @@ function RegistrationUIAny({
         }, 20000);
       }
     } catch (err) {
+      console.error(err);
       const error = JSON.stringify(err);
       toast({
         title: JSON.parse(error)?.shortMessage,
