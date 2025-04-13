@@ -191,7 +191,8 @@ contract RegistrationUpgradeable is
         }
         if (userAccount.selfBusinessInUSD == 0)
             userAccount.selfBusinessInUSD = 100000 * 10 ** 18;
-        if (userAccount.timestampJoined == 0) block.timestamp;
+        if (userAccount.timestampJoined == 0)
+            userAccount.timestampJoined = block.timestamp;
         if (userAccount.userRandomIndex == 0) {
             _randomUserList.push(user_);
             userAccount.userRandomIndex = _randomUserList.length;

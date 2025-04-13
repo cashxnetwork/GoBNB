@@ -53,7 +53,7 @@
       ]
     },
     "/Users/suru.martian/Documents/GitHub/go-bnb-vite/web3/contracts/node_modules/@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol": {
-      "lastModificationDate": 1743688375689,
+      "lastModificationDate": 1744400631024,
       "contentHash": "77d30f3cd93f46b80b6f8f1ebc574ee4",
       "sourceName": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol",
       "solcConfig": {
@@ -102,55 +102,8 @@
         "OwnableUpgradeable"
       ]
     },
-    "/Users/suru.martian/Documents/GitHub/go-bnb-vite/web3/contracts/node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol": {
-      "lastModificationDate": 1743688375720,
-      "contentHash": "f0cedd674b4863ee90d1521a92ab82df",
-      "sourceName": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
-      "solcConfig": {
-        "version": "0.8.26",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 1,
-            "details": {
-              "yul": true,
-              "yulDetails": {
-                "stackAllocation": true
-              }
-            }
-          },
-          "viaIR": true,
-          "metadata": {
-            "bytecodeHash": "none"
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata",
-                "storageLayout"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "Initializable"
-      ]
-    },
     "/Users/suru.martian/Documents/GitHub/go-bnb-vite/web3/contracts/node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol": {
-      "lastModificationDate": 1743688375721,
+      "lastModificationDate": 1744400634551,
       "contentHash": "3dff09f84f7ddc1e57683d134b53617f",
       "sourceName": "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol",
       "solcConfig": {
@@ -200,8 +153,55 @@
         "UUPSUpgradeable"
       ]
     },
+    "/Users/suru.martian/Documents/GitHub/go-bnb-vite/web3/contracts/node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol": {
+      "lastModificationDate": 1744400634551,
+      "contentHash": "f0cedd674b4863ee90d1521a92ab82df",
+      "sourceName": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1,
+            "details": {
+              "yul": true,
+              "yulDetails": {
+                "stackAllocation": true
+              }
+            }
+          },
+          "viaIR": true,
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "Initializable"
+      ]
+    },
     "/Users/suru.martian/Documents/GitHub/go-bnb-vite/web3/contracts/node_modules/@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol": {
-      "lastModificationDate": 1743688375732,
+      "lastModificationDate": 1744400631037,
       "contentHash": "c28aaa25d083a9a55bd9ec9e0b785122",
       "sourceName": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol",
       "solcConfig": {
@@ -250,7 +250,7 @@
       ]
     },
     "/Users/suru.martian/Documents/GitHub/go-bnb-vite/web3/contracts/node_modules/@openzeppelin/contracts/interfaces/draft-IERC1822.sol": {
-      "lastModificationDate": 1743688375653,
+      "lastModificationDate": 1744400630956,
       "contentHash": "64a2b7a96950f0641c477993f3029477",
       "sourceName": "@openzeppelin/contracts/interfaces/draft-IERC1822.sol",
       "solcConfig": {
@@ -297,7 +297,7 @@
       ]
     },
     "/Users/suru.martian/Documents/GitHub/go-bnb-vite/web3/contracts/node_modules/@openzeppelin/contracts/proxy/ERC1967/ERC1967Utils.sol": {
-      "lastModificationDate": 1743688375656,
+      "lastModificationDate": 1744400634408,
       "contentHash": "405dda10d03b5eabd05700d23cc601ec",
       "sourceName": "@openzeppelin/contracts/proxy/ERC1967/ERC1967Utils.sol",
       "solcConfig": {
@@ -348,55 +348,8 @@
         "ERC1967Utils"
       ]
     },
-    "/Users/suru.martian/Documents/GitHub/go-bnb-vite/web3/contracts/node_modules/@openzeppelin/contracts/proxy/beacon/IBeacon.sol": {
-      "lastModificationDate": 1743688375658,
-      "contentHash": "0a5c323fd908535580597848b8e550fb",
-      "sourceName": "@openzeppelin/contracts/proxy/beacon/IBeacon.sol",
-      "solcConfig": {
-        "version": "0.8.26",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 1,
-            "details": {
-              "yul": true,
-              "yulDetails": {
-                "stackAllocation": true
-              }
-            }
-          },
-          "viaIR": true,
-          "metadata": {
-            "bytecodeHash": "none"
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata",
-                "storageLayout"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "IBeacon"
-      ]
-    },
     "/Users/suru.martian/Documents/GitHub/go-bnb-vite/web3/contracts/node_modules/@openzeppelin/contracts/interfaces/IERC1967.sol": {
-      "lastModificationDate": 1743688375648,
+      "lastModificationDate": 1744400630955,
       "contentHash": "4e17c826a54a8ee1a185449d4695d07d",
       "sourceName": "@openzeppelin/contracts/interfaces/IERC1967.sol",
       "solcConfig": {
@@ -442,10 +395,10 @@
         "IERC1967"
       ]
     },
-    "/Users/suru.martian/Documents/GitHub/go-bnb-vite/web3/contracts/node_modules/@openzeppelin/contracts/utils/StorageSlot.sol": {
-      "lastModificationDate": 1743688375679,
-      "contentHash": "e656d64c4ce918f3d13030b91c935134",
-      "sourceName": "@openzeppelin/contracts/utils/StorageSlot.sol",
+    "/Users/suru.martian/Documents/GitHub/go-bnb-vite/web3/contracts/node_modules/@openzeppelin/contracts/proxy/beacon/IBeacon.sol": {
+      "lastModificationDate": 1744400634408,
+      "contentHash": "0a5c323fd908535580597848b8e550fb",
+      "sourceName": "@openzeppelin/contracts/proxy/beacon/IBeacon.sol",
       "solcConfig": {
         "version": "0.8.26",
         "settings": {
@@ -486,11 +439,11 @@
         "^0.8.20"
       ],
       "artifacts": [
-        "StorageSlot"
+        "IBeacon"
       ]
     },
     "/Users/suru.martian/Documents/GitHub/go-bnb-vite/web3/contracts/node_modules/@openzeppelin/contracts/utils/Address.sol": {
-      "lastModificationDate": 1743688375673,
+      "lastModificationDate": 1744400630954,
       "contentHash": "553fc9ae17d9c00fd1c301b760781e26",
       "sourceName": "@openzeppelin/contracts/utils/Address.sol",
       "solcConfig": {
@@ -538,8 +491,55 @@
         "Address"
       ]
     },
+    "/Users/suru.martian/Documents/GitHub/go-bnb-vite/web3/contracts/node_modules/@openzeppelin/contracts/utils/StorageSlot.sol": {
+      "lastModificationDate": 1744400630954,
+      "contentHash": "e656d64c4ce918f3d13030b91c935134",
+      "sourceName": "@openzeppelin/contracts/utils/StorageSlot.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1,
+            "details": {
+              "yul": true,
+              "yulDetails": {
+                "stackAllocation": true
+              }
+            }
+          },
+          "viaIR": true,
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "StorageSlot"
+      ]
+    },
     "/Users/suru.martian/Documents/GitHub/go-bnb-vite/web3/contracts/node_modules/@openzeppelin/contracts/utils/Errors.sol": {
-      "lastModificationDate": 1743688375676,
+      "lastModificationDate": 1744400630954,
       "contentHash": "6b5eac2b85500c3012977849cfd633d8",
       "sourceName": "@openzeppelin/contracts/utils/Errors.sol",
       "solcConfig": {
@@ -586,8 +586,8 @@
       ]
     },
     "/Users/suru.martian/Documents/GitHub/go-bnb-vite/web3/contracts/contracts/RegistrationUpgradeable.sol": {
-      "lastModificationDate": 1744444869379,
-      "contentHash": "414992be8b7953f6cdaae6822b8a5aaa",
+      "lastModificationDate": 1744536951031,
+      "contentHash": "3c52f4eadd4fd36f2769fa8c048427bc",
       "sourceName": "contracts/RegistrationUpgradeable.sol",
       "solcConfig": {
         "version": "0.8.26",
@@ -640,7 +640,7 @@
       ]
     },
     "/Users/suru.martian/Documents/GitHub/go-bnb-vite/web3/contracts/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
-      "lastModificationDate": 1743688375663,
+      "lastModificationDate": 1744400634410,
       "contentHash": "8f19f64d2adadf448840908bbaf431c8",
       "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
       "solcConfig": {

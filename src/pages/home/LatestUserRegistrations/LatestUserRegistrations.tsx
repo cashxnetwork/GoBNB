@@ -23,6 +23,7 @@ const ShowLatestUserComponent = ({
     index: number;
 }) => {
     const userAccount = useGetUserAccount(userAddress);
+    console.log("userAccount", userAccount)
     const timeJoinedInUnix = userAccount?.data?.timestampJoined;
     //convert unix time to minutes or hours or days ago
     const timeJoined = new Date(Number(timeJoinedInUnix) * 1000);
@@ -38,18 +39,18 @@ const ShowLatestUserComponent = ({
             <HStack>
                 <Heading size="md">{index + 1}</Heading>
                 <Tag p={2} borderRadius={"full"}>
-                    <Heading size="sm">{shortenAddress(userAddress, 7)}</Heading>
+                    <Heading size={["xs", "sm"]}>{shortenAddress(userAddress, 7)}</Heading>
                 </Tag>
             </HStack>
             <Spacer />
             <Text>
-                {diffInMinutes > 60
-                    ? `${diffInHours} Hours Ago`
+                {diffInDays > 365
+                    ? `${Math.floor(diffInDays / 365)} Years Ago`
                     : diffInHours > 24
                         ? `${diffInDays} Days Ago`
-                        : diffInDays > 365
-                            ? `${Math.floor(diffInDays / 365)} Years Ago`
-                            : `${diffInMinutes}`}{" "}
+                        : diffInMinutes > 60
+                            ? `${diffInHours} Hours Ago`
+                            : `${diffInMinutes} Minutes Ago`}
             </Text>
         </HStack>
     );
@@ -77,7 +78,7 @@ export const LatestUserRegistrations = () => {
                     borderRadius={"3xl"}
                     p={5}
                 >
-                    {users?.map((user, key) => {
+                    {users?.reverse().map((user, key) => {
                         return (
                             <ShowLatestUserComponent
                                 userAddress={user as `0x${string}`}
