@@ -3,11 +3,6 @@ import {
   HStack,
   Heading,
   Icon,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
   VStack
 } from "@chakra-ui/react";
 import { useAppKitAccount, useAppKitNetwork } from "@reown/appkit/react";
@@ -15,7 +10,6 @@ import { FcGoodDecision } from "react-icons/fc";
 import { useParams } from "react-router-dom";
 import { formatEther } from "viem";
 import RegistrationUI from "../../components/RegistrationUI/RegistrationUI";
-import RegistrationUIAny from "../../components/RegistrationUI/RegistrationUIAny";
 import UpgradeUI from "../../components/UpgradeUi/UpgradeUi";
 import { supportedNetworkInfo } from "../../constants/SupportedNetworkInfo";
 import {
@@ -56,57 +50,39 @@ export default function RegistrationPage() {
           </HStack>
           <Divider />
         </VStack>
-        <Tabs>
-          <TabList>
-            <Tab>Register yourself</Tab>
-            <Tab>Register your friend</Tab>
-          </TabList>
-          <TabPanels>
-            <TabPanel>
-              {Number(userSelfBusiness) === 0 ? (
-                <>
-                  <RegistrationUI
-                    referrerAddress={referrerAddress}
-                    valueInDecimals={Number(formatEther(valueToRegister ?? 0))}
-                    currentNetwork={currentNetwork}
-                  ></RegistrationUI>
 
-                  {/* <Heading>New User</Heading> */}
-                </>
-              ) : (
-                <>
-                  <UpgradeUI
-                    upgradePlan={
-                      upgradePlans?.data?.[0]?.[
+        {Number(userSelfBusiness) === 0 ? (
+          <>
+            <RegistrationUI
+              referrerAddress={referrerAddress}
+              valueInDecimals={Number(formatEther(valueToRegister ?? 0))}
+              currentNetwork={currentNetwork}
+            ></RegistrationUI>
+
+            {/* <Heading>New User</Heading> */}
+          </>
+        ) : (
+          <>
+            <UpgradeUI
+              upgradePlan={
+                upgradePlans?.data?.[0]?.[
+                Number(userLevelToUpgrade?.data?.[0])
+                ]
+              }
+              valueInDecimals={
+                upgradePlans?.data
+                  ? Number(
+                    upgradePlans?.data?.[0]?.[
                       Number(userLevelToUpgrade?.data?.[0])
-                      ]
-                    }
-                    valueInDecimals={
-                      upgradePlans?.data
-                        ? Number(
-                          upgradePlans?.data?.[0]?.[
-                            Number(userLevelToUpgrade?.data?.[0])
-                          ]?.valueToUpgradeInUSD ?? 0
-                        ) / Number(nativePrice?.data ?? 0)
-                        : 0
-                    }
-                    currentNetwork={currentNetwork}
-                  ></UpgradeUI>
-                  {/* <Heading>Old User</Heading> */}
-                </>
-              )}
-            </TabPanel>
-            <TabPanel>
-              <RegistrationUIAny
-                userAddress={address as `0x${string}`}
-                referrerAddress={referrerAddress}
-                valueInDecimals={Number(formatEther(valueToRegister ?? 0))}
-                currentNetwork={currentNetwork}
-              ></RegistrationUIAny>
-              ‚
-            </TabPanel>
-          </TabPanels>
-        </Tabs>
+                    ]?.valueToUpgradeInUSD ?? 0
+                  ) / Number(nativePrice?.data ?? 0)
+                  : 0
+              }
+              currentNetwork={currentNetwork}
+            ></UpgradeUI>
+            {/* <Heading>Old User</Heading> */}
+          </>
+        )}
       </VStack>
     </CheckReferrerActive>
   );
