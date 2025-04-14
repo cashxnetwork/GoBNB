@@ -60,7 +60,7 @@ export const LatestUserRegistrations = () => {
     const allUsers = useGetAllUsers();
     const totalUsersToShow = 10;
     const users = allUsers?.isSuccess
-        ? allUsers?.data?.slice(0, totalUsersToShow)
+        ? allUsers?.data?.slice(-totalUsersToShow)
         : [];
     return (
         allUsers?.data?.length > 0 && (
